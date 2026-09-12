@@ -1,0 +1,478 @@
+COMMENT ============================================================;
+COMMENT ALGOL W GPU Stack v1.0.0;
+COMMENT File: AwgHead.alw;
+COMMENT Role: program head, record classes, global pools, IR arrays;
+COMMENT This fragment opens the compilation unit. Concatenate all;
+COMMENT src fragments after it, then AwgBody.alw which closes END.;
+COMMENT;
+COMMENT Language: ALGOL W (Stanford / AWA dialect);
+COMMENT Identifiers are letters and digits only (no underscores);
+COMMENT Arrays of records are represented as arrays of references;
+COMMENT ============================================================;
+
+BEGIN COMMENT AwgGpuStack;
+
+    COMMENT ---- scalar kind codes (BLOCK 001) ----;
+    INTEGER KindNone, KindInt, KindReal, KindLong, KindLog, KindBits;
+
+    COMMENT ---- integer representation (BLOCK 002) ----;
+    INTEGER IntWidth, IntSigned, MaxInt, MinInt;
+
+    COMMENT ---- floating representation (BLOCK 003) ----;
+    INTEGER RealWidth, LongWidth;
+    REAL RealEps, RealMax;
+    LONG REAL LongEps;
+
+    COMMENT ---- status codes (BLOCK 007) ----;
+    INTEGER StOk, StErr, StInvalid, StOom, StBounds, StAlign;
+    INTEGER StUnimpl, StHwDep, StDim, StOverflow, StDivZero;
+    INTEGER StDomain, StAlias, StLifetime, StBackend, StNotInit;
+    INTEGER StConflict, StValidate, StTimeout, StMask, StNotReady;
+    INTEGER StBusy, StIo, StFormat, StVersion, StNullRef, StFull;
+    INTEGER StEmpty, StCycle, StPred, StArity, StOpcode, StOperand;
+    INTEGER StKernel, StLaunch, StFence, StQueue, StGraph, StPlan;
+
+    COMMENT ---- memory spaces (BLOCKS 101-105) ----;
+    INTEGER MemNone, MemHost, MemDevice, MemShared, MemLocal;
+    INTEGER MemConstant, MemRegister;
+
+    COMMENT ---- buffer state ----;
+    INTEGER BufFree, BufAlloc, BufMapped, BufReleased, BufError;
+
+    COMMENT ---- backend kinds ----;
+    INTEGER BeNone, BeRef, BeCpu, BeGpu, BeAccel;
+
+    COMMENT ---- lifecycle ----;
+    INTEGER LifeIdle, LifeInit, LifeReady, LifeLaunch, LifeRun;
+    INTEGER LifeWait, LifeDone, LifeFail, LifeShutdown;
+
+    COMMENT ---- opcode identifiers (BLOCKS 153-154) ----;
+    INTEGER OpNop, OpHalt, OpMov, OpLoad, OpStore, OpLoadi;
+    INTEGER OpIadd, OpIsub, OpImul, OpIdiv, OpIrem;
+    INTEGER OpIand, OpIor, OpIxor, OpInot, OpIshl, OpIshr;
+    INTEGER OpIcmp, OpSel, OpIneg, OpIabs;
+    INTEGER OpFadd, OpFsub, OpFmul, OpFdiv, OpFfma;
+    INTEGER OpFmin, OpFmax, OpFabs, OpFsqrt, OpFrcp, OpFrsqrt;
+    INTEGER OpFpow, OpFlog, OpFexp, OpFneg, OpFcmp;
+    INTEGER OpVadd, OpVsub, OpVscale, OpDot, OpReduce, OpScan;
+    INTEGER OpGemv, OpGemm, OpTpose, OpGather, OpScatter;
+    INTEGER OpMap, OpConv, OpStencil, OpPool, OpHist;
+    INTEGER OpBarrier, OpPred, OpJump, OpCjump, OpLabel;
+    INTEGER OpFill, OpCopy, OpAxpy, OpGer, OpSoftmax;
+    INTEGER OpSync, OpFence, OpTrace, OpCount;
+
+    COMMENT ---- comparison codes ----;
+    INTEGER CmpEq, CmpNe, CmpLt, CmpLe, CmpGt, CmpGe;
+
+    COMMENT ---- layout codes ----;
+    INTEGER LayContig, LayTiled, LayRow, LayCol;
+
+    COMMENT ---- default tile sizes for GEMM (BLOCK 299) ----;
+    INTEGER TileM, TileN, TileK;
+
+    COMMENT ---- software warp model ----;
+    INTEGER WarpSize, MaxThreads, MaxGridX, MaxGridY, MaxGridZ;
+
+    COMMENT ---- pool capacities (must match array bounds) ----;
+    INTEGER CapHost, CapDev, CapShared, CapLocal, CapConst;
+    INTEGER CapIreg, CapFreg, CapPreg, CapOps, CapBufs;
+    INTEGER CapKernels, CapQueue, CapGraph, CapArgs, CapNames;
+    INTEGER CapTrace, CapBlocks, CapMask;
+
+    COMMENT ---- runtime flags ----;
+    INTEGER AwgInitialized;
+    INTEGER AwgDetMode;
+    INTEGER AwgActiveBackend;
+    INTEGER AwgActiveDevice;
+    INTEGER AwgLastStatus;
+    INTEGER AwgCycle;
+    INTEGER AwgOpIssued;
+    INTEGER AwgMemTraffic;
+    INTEGER AwgHaltFlag;
+    INTEGER AwgPc;
+    INTEGER AwgOpCount;
+    INTEGER AwgNextBuf;
+    INTEGER AwgNextKernel;
+    INTEGER AwgNextExec;
+    INTEGER AwgHostUsed;
+    INTEGER AwgDevUsed;
+    INTEGER AwgSharedUsed;
+    INTEGER AwgLocalUsed;
+    INTEGER AwgConstUsed;
+    INTEGER AwgTestPass;
+    INTEGER AwgTestFail;
+    INTEGER AwgTestSkip;
+    INTEGER AwgLogCount;
+    INTEGER AwgTraceCount;
+    INTEGER AwgQueueHead;
+    INTEGER AwgQueueTail;
+    INTEGER AwgQueueCount;
+    INTEGER AwgGraphCount;
+    INTEGER AwgMaskWord;
+    INTEGER AwgSeed;
+    INTEGER AwgReplay;
+    INTEGER AwgPriority;
+    INTEGER AwgStreamId;
+    INTEGER AwgFenceSeq;
+    INTEGER AwgOwnerToken;
+    INTEGER AwgVerifyLevel;
+
+    COMMENT ---- last error payload ----;
+    INTEGER AwgErrCode;
+    INTEGER AwgErrBlock;
+    INTEGER AwgErrInfo;
+
+    COMMENT ============================================================;
+    COMMENT RECORD CLASSES;
+    COMMENT ============================================================;
+
+    COMMENT BLOCK 008 error record;
+    RECORD AwgErrorRec (
+        INTEGER Code;
+        INTEGER BlockNo;
+        INTEGER Info;
+        STRING(48) Msg
+    );
+
+    COMMENT BLOCK 010 configuration;
+    RECORD AwgConfigRec (
+        INTEGER HostCap;
+        INTEGER DevCap;
+        INTEGER SharedCap;
+        INTEGER Det;
+        INTEGER Backend;
+        INTEGER TileM;
+        INTEGER TileN;
+        INTEGER TileK;
+        INTEGER TraceOn;
+        INTEGER CheckBounds;
+        INTEGER CheckAlias;
+        INTEGER Verify
+    );
+
+    COMMENT BLOCK 017 dimensionality;
+    RECORD AwgDim3Rec (
+        INTEGER X;
+        INTEGER Y;
+        INTEGER Z
+    );
+
+    COMMENT BLOCK 018 tensor descriptor;
+    RECORD AwgTenRec (
+        INTEGER Id;
+        INTEGER Rank;
+        INTEGER D0;
+        INTEGER D1;
+        INTEGER D2;
+        INTEGER D3;
+        INTEGER S0;
+        INTEGER S1;
+        INTEGER S2;
+        INTEGER S3;
+        INTEGER Offset;
+        INTEGER Kind;
+        INTEGER Layout;
+        INTEGER Space;
+        INTEGER BufId
+    );
+
+    COMMENT BLOCK 019 buffer descriptor;
+    RECORD AwgBufRec (
+        INTEGER Id;
+        INTEGER Space;
+        INTEGER Offset;
+        INTEGER Length;
+        INTEGER Stride;
+        INTEGER ElemKind;
+        INTEGER Align;
+        INTEGER Owner;
+        INTEGER State;
+        INTEGER Pitch;
+        INTEGER Dim0;
+        INTEGER Dim1;
+        INTEGER Dim2
+    );
+
+    COMMENT BLOCK 020 backend descriptor;
+    RECORD AwgBeRec (
+        INTEGER Kind;
+        INTEGER DeviceId;
+        INTEGER Available;
+        INTEGER HwPresent;
+        INTEGER MaxThreads;
+        INTEGER SharedBytes;
+        INTEGER ConstBytes;
+        INTEGER Warp;
+        INTEGER TensorCore;
+        INTEGER UnifiedMem;
+        STRING(32) Name
+    );
+
+    COMMENT BLOCK 021 capability descriptor;
+    RECORD AwgCapRec (
+        INTEGER RefExec;
+        INTEGER CpuExec;
+        INTEGER GpuExec;
+        INTEGER TiledGemm;
+        INTEGER RedScan;
+        INTEGER Graphs;
+        INTEGER Fusion;
+        INTEGER HwSync;
+        INTEGER HwSimd;
+        INTEGER HwOccupancy
+    );
+
+    COMMENT BLOCK 033 version;
+    RECORD AwgVerRec (
+        INTEGER Major;
+        INTEGER Minor;
+        INTEGER Patch;
+        STRING(16) Tag
+    );
+
+    COMMENT BLOCK 069 kernel argument;
+    RECORD AwgArgRec (
+        INTEGER Slot;
+        INTEGER Kind;
+        INTEGER Ival;
+        INTEGER BufId;
+        INTEGER Offset;
+        INTEGER Length
+    );
+
+    COMMENT BLOCK 072 kernel metadata;
+    RECORD AwgKMetaRec (
+        INTEGER Id;
+        INTEGER Ninst;
+        INTEGER Narg;
+        INTEGER NregI;
+        INTEGER NregF;
+        INTEGER SharedNeed;
+        INTEGER LocalNeed;
+        INTEGER BarrierN;
+        INTEGER Valid;
+        STRING(32) Name
+    );
+
+    COMMENT BLOCK 073 launch descriptor;
+    RECORD AwgLaunchRec (
+        INTEGER KernelId;
+        INTEGER Gx; INTEGER Gy; INTEGER Gz;
+        INTEGER Bx; INTEGER By; INTEGER Bz;
+        INTEGER SharedBytes;
+        INTEGER Stream;
+        INTEGER Priority;
+        INTEGER Det;
+        INTEGER Valid
+    );
+
+    COMMENT BLOCK 076 execution context;
+    RECORD AwgCtxRec (
+        INTEGER ExecId;
+        INTEGER KernelId;
+        INTEGER Gx; INTEGER Gy; INTEGER Gz;
+        INTEGER Bx; INTEGER By; INTEGER Bz;
+        INTEGER Tx; INTEGER Ty; INTEGER Tz;
+        INTEGER Bix; INTEGER Biy; INTEGER Biz;
+        INTEGER Lane;
+        INTEGER Mask;
+        INTEGER Life;
+        INTEGER Backend;
+        INTEGER Pc
+    );
+
+    COMMENT BLOCK 155 opcode record;
+    RECORD AwgOpRec (
+        INTEGER Code;
+        INTEGER Dst;
+        INTEGER Src0;
+        INTEGER Src1;
+        INTEGER Src2;
+        INTEGER Imm;
+        INTEGER Pred;
+        INTEGER Space;
+        INTEGER Flags
+    );
+
+    COMMENT BLOCK 156 operand record;
+    RECORD AwgOperRec (
+        INTEGER Kind;
+        INTEGER Reg;
+        INTEGER Imm;
+        INTEGER BufId;
+        INTEGER Offset
+    );
+
+    COMMENT BLOCK 065 barrier;
+    RECORD AwgBarRec (
+        INTEGER Id;
+        INTEGER Expected;
+        INTEGER Arrived;
+        INTEGER Generation;
+        INTEGER State
+    );
+
+    COMMENT BLOCK 362 fence;
+    RECORD AwgFenceRec (
+        INTEGER Id;
+        INTEGER Seq;
+        INTEGER Signaled;
+        INTEGER Waiters
+    );
+
+    COMMENT BLOCK 357 queue command;
+    RECORD AwgCmdRec (
+        INTEGER Kind;
+        INTEGER KernelId;
+        INTEGER BufSrc;
+        INTEGER BufDst;
+        INTEGER Bytes;
+        INTEGER Extra;
+        INTEGER Status
+    );
+
+    COMMENT BLOCK 417 graph node;
+    RECORD AwgNodeRec (
+        INTEGER Id;
+        INTEGER Op;
+        INTEGER KernelId;
+        INTEGER Dep0;
+        INTEGER Dep1;
+        INTEGER Dep2;
+        INTEGER BufIn;
+        INTEGER BufOut;
+        INTEGER Done
+    );
+
+    COMMENT BLOCK 034 trace event;
+    RECORD AwgTrRec (
+        INTEGER Cycle;
+        INTEGER Op;
+        INTEGER Pc;
+        INTEGER Info;
+        INTEGER Status
+    );
+
+    COMMENT BLOCK 451 test result;
+    RECORD AwgTResRec (
+        INTEGER BlockNo;
+        INTEGER Passed;
+        INTEGER Failed;
+        INTEGER Skipped;
+        INTEGER Status
+    );
+
+    COMMENT ---- reference tables ----;
+    REFERENCE(AwgErrorRec) AwgLastErr;
+    REFERENCE(AwgConfigRec) AwgConfig;
+    REFERENCE(AwgVerRec) AwgVersion;
+    REFERENCE(AwgBeRec) AwgBackend;
+    REFERENCE(AwgCapRec) AwgCaps;
+    REFERENCE(AwgCtxRec) AwgCtx;
+    REFERENCE(AwgLaunchRec) AwgLaunch;
+    REFERENCE(AwgKMetaRec) AwgKMeta;
+    REFERENCE(AwgBarRec) AwgBarrier;
+    REFERENCE(AwgFenceRec) AwgFence;
+    REFERENCE(AwgDim3Rec) AwgGrid;
+    REFERENCE(AwgDim3Rec) AwgBlock;
+    REFERENCE(AwgDim3Rec) AwgThread;
+    REFERENCE(AwgTResRec) AwgLastTest;
+
+    REFERENCE(AwgBufRec) ARRAY AwgBufTab(0 :: 63);
+    REFERENCE(AwgKMetaRec) ARRAY AwgKTab(0 :: 31);
+    REFERENCE(AwgArgRec) ARRAY AwgArgTab(0 :: 15);
+    REFERENCE(AwgCmdRec) ARRAY AwgQTab(0 :: 63);
+    REFERENCE(AwgNodeRec) ARRAY AwgGTab(0 :: 31);
+    REFERENCE(AwgTrRec) ARRAY AwgTrTab(0 :: 255);
+    REFERENCE(AwgTenRec) ARRAY AwgTenTab(0 :: 31);
+    REFERENCE(AwgOpRec) ARRAY AwgIrTab(0 :: 127);
+
+    COMMENT ============================================================;
+    COMMENT MEMORY POOLS;
+    COMMENT Host and device pools are ALGOL W arrays. They implement;
+    COMMENT the software memory model. They are not GPU VRAM.;
+    COMMENT Device-space arrays are still ALGOL W storage; a hardware;
+    COMMENT backend must copy from these into real device memory.;
+    COMMENT ============================================================;
+
+    INTEGER ARRAY AwgHostI(0 :: 8191);
+    REAL ARRAY AwgHostR(0 :: 8191);
+    INTEGER ARRAY AwgDevI(0 :: 8191);
+    REAL ARRAY AwgDevR(0 :: 8191);
+    REAL ARRAY AwgSharedR(0 :: 1023);
+    REAL ARRAY AwgLocalR(0 :: 255);
+    REAL ARRAY AwgConstR(0 :: 511);
+    INTEGER ARRAY AwgIReg(0 :: 63);
+    REAL ARRAY AwgFReg(0 :: 63);
+    LOGICAL ARRAY AwgPReg(0 :: 31);
+
+    COMMENT IR unpacked arrays (BLOCK 162);
+    INTEGER ARRAY AwgOpCode(0 :: 2047);
+    INTEGER ARRAY AwgOpDst(0 :: 2047);
+    INTEGER ARRAY AwgOpSrc0(0 :: 2047);
+    INTEGER ARRAY AwgOpSrc1(0 :: 2047);
+    INTEGER ARRAY AwgOpSrc2(0 :: 2047);
+    INTEGER ARRAY AwgOpImm(0 :: 2047);
+    INTEGER ARRAY AwgOpPred(0 :: 2047);
+    INTEGER ARRAY AwgOpSpace(0 :: 2047);
+    INTEGER ARRAY AwgOpFlags(0 :: 2047);
+
+    COMMENT kernel body ranges: start, length per kernel id;
+    INTEGER ARRAY AwgKStart(0 :: 31);
+    INTEGER ARRAY AwgKLen(0 :: 31);
+    INTEGER ARRAY AwgKValid(0 :: 31);
+
+    COMMENT ownership / lifetime / alias;
+    INTEGER ARRAY AwgBufOwner(0 :: 63);
+    INTEGER ARRAY AwgBufLife(0 :: 63);
+    INTEGER ARRAY AwgBufSpace(0 :: 63);
+
+    COMMENT execution mask words (BLOCK 061) 32 lanes;
+    INTEGER ARRAY AwgLaneAct(0 :: 31);
+
+    COMMENT name table (BLOCK 032);
+    STRING(48) ARRAY AwgName(0 :: 63);
+
+    COMMENT log lines (BLOCK 036);
+    STRING(80) ARRAY AwgLog(0 :: 63);
+
+    COMMENT block registry names (BLOCK 500 inventory);
+    STRING(48) ARRAY AwgBlockName(1 :: 500);
+    INTEGER ARRAY AwgBlockImpl(1 :: 500);
+    INTEGER ARRAY AwgBlockHw(1 :: 500);
+    INTEGER ARRAY AwgBlockVerif(1 :: 500);
+
+    COMMENT counters;
+    INTEGER ARRAY AwgOpHist(0 :: 63);
+    INTEGER ARRAY AwgSpaceBytes(0 :: 7);
+
+    COMMENT GEMM tile scratch (register-style accumulators);
+    REAL ARRAY AwgAcc(0 :: 255);
+    REAL ARRAY AwgTileA(0 :: 255);
+    REAL ARRAY AwgTileB(0 :: 255);
+
+    COMMENT scan/reduce scratch;
+    REAL ARRAY AwgRedTmp(0 :: 255);
+    REAL ARRAY AwgScanTmp(0 :: 255);
+
+    COMMENT histogram bins;
+    INTEGER ARRAY AwgHist(0 :: 63);
+
+    COMMENT graph adjacency (dep flags);
+    INTEGER ARRAY AwgGDep(0 :: 31);
+
+    COMMENT deterministic replay buffer of launch keys;
+    INTEGER ARRAY AwgReplayKey(0 :: 31);
+
+    COMMENT work decomposition lists;
+    INTEGER ARRAY AwgWorkLo(0 :: 63);
+    INTEGER ARRAY AwgWorkHi(0 :: 63);
+
+    COMMENT fused pipeline temporaries;
+    REAL ARRAY AwgFuseTmp(0 :: 255);
+
+    INTEGER I, J, K, TmpI;
+    REAL TmpR;
+    LONG REAL TmpL;
+    LOGICAL TmpLgc;
+    BITS TmpBits;

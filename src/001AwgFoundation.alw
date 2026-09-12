@@ -1,0 +1,674 @@
+COMMENT ============================================================;
+COMMENT BLOCKS 001-050 — foundation and runtime substrate;
+COMMENT ============================================================;
+
+COMMENT BLOCK 042;
+COMMENT Component: AwgAlignUp;
+COMMENT Purpose: round N up to a multiple of Align;
+COMMENT Inputs: N, Align;
+COMMENT Outputs: aligned integer;
+COMMENT Hardware: none;
+INTEGER PROCEDURE AwgAlignUp(INTEGER VALUE N, Align);
+BEGIN
+    INTEGER A, R;
+    A := Align;
+    IF A <= 0 THEN A := 1;
+    R := N + (A - 1);
+    AwgAlignUp := R - (R REM A)
+END;
+
+COMMENT BLOCK 043;
+COMMENT Component: AwgSizeOfKind;
+COMMENT Purpose: software word size of a scalar kind;
+INTEGER PROCEDURE AwgSizeOfKind(INTEGER VALUE Kind);
+BEGIN
+    IF Kind = KindInt THEN AwgSizeOfKind := 1
+    ELSE IF Kind = KindReal THEN AwgSizeOfKind := 1
+    ELSE IF Kind = KindLong THEN AwgSizeOfKind := 2
+    ELSE IF Kind = KindLog THEN AwgSizeOfKind := 1
+    ELSE IF Kind = KindBits THEN AwgSizeOfKind := 1
+    ELSE AwgSizeOfKind := 0
+END;
+
+COMMENT BLOCK 044;
+COMMENT Component: AwgIMin / AwgIMax;
+INTEGER PROCEDURE AwgIMin(INTEGER VALUE A, B);
+BEGIN
+    IF A < B THEN AwgIMin := A ELSE AwgIMin := B
+END;
+
+INTEGER PROCEDURE AwgIMax(INTEGER VALUE A, B);
+BEGIN
+    IF A > B THEN AwgIMax := A ELSE AwgIMax := B
+END;
+
+COMMENT BLOCK 045;
+COMMENT Component: AwgIClamp;
+INTEGER PROCEDURE AwgIClamp(INTEGER VALUE X, Lo, Hi);
+BEGIN
+    IF X < Lo THEN AwgIClamp := Lo
+    ELSE IF X > Hi THEN AwgIClamp := Hi
+    ELSE AwgIClamp := X
+END;
+
+REAL PROCEDURE AwgRMin(REAL VALUE A, B);
+BEGIN
+    IF A < B THEN AwgRMin := A ELSE AwgRMin := B
+END;
+
+REAL PROCEDURE AwgRMax(REAL VALUE A, B);
+BEGIN
+    IF A > B THEN AwgRMax := A ELSE AwgRMax := B
+END;
+
+REAL PROCEDURE AwgRClamp(REAL VALUE X, Lo, Hi);
+BEGIN
+    IF X < Lo THEN AwgRClamp := Lo
+    ELSE IF X > Hi THEN AwgRClamp := Hi
+    ELSE AwgRClamp := X
+END;
+
+COMMENT BLOCK 046;
+COMMENT Component: AwgPackBits / AwgUnpackBits;
+COMMENT Purpose: portable integer bit field pack using powers of two;
+COMMENT Hardware: none — not a GPU bit-field instruction;
+INTEGER PROCEDURE AwgIAnd(INTEGER VALUE A, B);
+BEGIN
+    INTEGER R, P, X, Y;
+    R := 0; P := 1;
+    X := A; Y := B;
+    IF X < 0 THEN X := 0;
+    IF Y < 0 THEN Y := 0;
+    WHILE (X > 0) OR (Y > 0) DO
+    BEGIN
+        IF ODD(X) AND ODD(Y) THEN R := R + P;
+        X := X DIV 2;
+        Y := Y DIV 2;
+        IF P > (MaxInt DIV 2) THEN
+        BEGIN
+            X := 0; Y := 0
+        END
+        ELSE P := P * 2
+    END;
+    AwgIAnd := R
+END;
+
+INTEGER PROCEDURE AwgIOr(INTEGER VALUE A, B);
+BEGIN
+    INTEGER R, P, X, Y;
+    R := 0; P := 1;
+    X := A; Y := B;
+    IF X < 0 THEN X := 0;
+    IF Y < 0 THEN Y := 0;
+    WHILE (X > 0) OR (Y > 0) DO
+    BEGIN
+        IF ODD(X) OR ODD(Y) THEN R := R + P;
+        X := X DIV 2;
+        Y := Y DIV 2;
+        IF P > (MaxInt DIV 2) THEN
+        BEGIN
+            X := 0; Y := 0
+        END
+        ELSE P := P * 2
+    END;
+    AwgIOr := R
+END;
+
+INTEGER PROCEDURE AwgIXor(INTEGER VALUE A, B);
+BEGIN
+    INTEGER R, P, X, Y;
+    R := 0; P := 1;
+    X := A; Y := B;
+    IF X < 0 THEN X := 0;
+    IF Y < 0 THEN Y := 0;
+    WHILE (X > 0) OR (Y > 0) DO
+    BEGIN
+        IF ODD(X) # ODD(Y) THEN R := R + P;
+        X := X DIV 2;
+        Y := Y DIV 2;
+        IF P > (MaxInt DIV 2) THEN
+        BEGIN
+            X := 0; Y := 0
+        END
+        ELSE P := P * 2
+    END;
+    AwgIXor := R
+END;
+
+INTEGER PROCEDURE AwgINot31(INTEGER VALUE A);
+BEGIN
+    COMMENT 31-bit ones complement in the portable model;
+    AwgINot31 := AwgIXor(A, 2147483647)
+END;
+
+INTEGER PROCEDURE AwgIShl(INTEGER VALUE A, N);
+BEGIN
+    INTEGER R, I;
+    R := A;
+    IF N <= 0 THEN AwgIShl := A
+    ELSE IF N >= 31 THEN AwgIShl := 0
+    ELSE
+    BEGIN
+        FOR I := 1 STEP 1 UNTIL N DO
+        BEGIN
+            IF R > (MaxInt DIV 2) THEN R := 0
+            ELSE R := R * 2
+        END;
+        AwgIShl := R
+    END
+END;
+
+INTEGER PROCEDURE AwgIShr(INTEGER VALUE A, N);
+BEGIN
+    INTEGER R, I;
+    R := A;
+    IF N <= 0 THEN AwgIShr := A
+    ELSE IF N >= 31 THEN AwgIShr := 0
+    ELSE
+    BEGIN
+        FOR I := 1 STEP 1 UNTIL N DO R := R DIV 2;
+        AwgIShr := R
+    END
+END;
+
+INTEGER PROCEDURE AwgPackBits(INTEGER VALUE Field, Width, Shift, Base);
+BEGIN
+    INTEGER M, F;
+    M := AwgIShl(1, Width) - 1;
+    F := AwgIAnd(Field, M);
+    AwgPackBits := AwgIOr(Base, AwgIShl(F, Shift))
+END;
+
+INTEGER PROCEDURE AwgUnpackBits(INTEGER VALUE Word, Width, Shift);
+BEGIN
+    INTEGER M;
+    M := AwgIShl(1, Width) - 1;
+    AwgUnpackBits := AwgIAnd(AwgIShr(Word, Shift), M)
+END;
+
+COMMENT BLOCK 047;
+COMMENT Component: AwgPopc / AwgClz / AwgBrev;
+INTEGER PROCEDURE AwgPopc(INTEGER VALUE A);
+BEGIN
+    INTEGER N, X;
+    N := 0; X := A;
+    IF X < 0 THEN X := 0;
+    WHILE X > 0 DO
+    BEGIN
+        IF ODD(X) THEN N := N + 1;
+        X := X DIV 2
+    END;
+    AwgPopc := N
+END;
+
+INTEGER PROCEDURE AwgClz(INTEGER VALUE A);
+BEGIN
+    INTEGER N, X, P;
+    IF A <= 0 THEN AwgClz := 31
+    ELSE
+    BEGIN
+        N := 0; X := A; P := AwgIShl(1, 30);
+        WHILE (P > 0) AND (AwgIAnd(X, P) = 0) DO
+        BEGIN
+            N := N + 1;
+            P := P DIV 2
+        END;
+        AwgClz := N
+    END
+END;
+
+INTEGER PROCEDURE AwgBrev(INTEGER VALUE A);
+BEGIN
+    INTEGER R, X, I;
+    R := 0; X := A;
+    IF X < 0 THEN X := 0;
+    FOR I := 0 STEP 1 UNTIL 30 DO
+    BEGIN
+        R := R * 2;
+        IF ODD(X) THEN R := R + 1;
+        X := X DIV 2
+    END;
+    AwgBrev := R
+END;
+
+COMMENT BLOCK 048;
+COMMENT Component: AwgComposeId;
+COMMENT Purpose: pack device and local ids into one handle;
+INTEGER PROCEDURE AwgComposeId(INTEGER VALUE Dev, Local);
+BEGIN
+    AwgComposeId := AwgPackBits(Local, 16, 0, AwgIShl(AwgIAnd(Dev, 255), 16))
+END;
+
+INTEGER PROCEDURE AwgIdDevice(INTEGER VALUE Id);
+BEGIN
+    AwgIdDevice := AwgIShr(Id, 16)
+END;
+
+INTEGER PROCEDURE AwgIdLocal(INTEGER VALUE Id);
+BEGIN
+    AwgIdLocal := AwgIAnd(Id, 65535)
+END;
+
+COMMENT BLOCK 037;
+COMMENT Component: AwgAssert;
+COMMENT Purpose: software assertion; records StValidate on failure;
+PROCEDURE AwgAssert(LOGICAL VALUE Cond; INTEGER VALUE BlockNo, Info;
+                    INTEGER RESULT Status);
+BEGIN
+    IF Cond THEN Status := StOk
+    ELSE
+    BEGIN
+        Status := StValidate;
+        AwgSetStatus(StValidate, BlockNo, Info)
+    END
+END;
+
+COMMENT BLOCK 011-016 identifier constructors;
+INTEGER PROCEDURE AwgKernelId(INTEGER VALUE Local);
+BEGIN
+    AwgKernelId := AwgComposeId(AwgActiveDevice, Local)
+END;
+
+INTEGER PROCEDURE AwgDeviceIdOf(INTEGER VALUE Local);
+BEGIN
+    AwgDeviceIdOf := AwgComposeId(0, Local)
+END;
+
+INTEGER PROCEDURE AwgExecIdOf(INTEGER VALUE Local);
+BEGIN
+    AwgExecIdOf := AwgComposeId(AwgActiveDevice, Local)
+END;
+
+INTEGER PROCEDURE AwgMemoryIdOf(INTEGER VALUE Local);
+BEGIN
+    AwgMemoryIdOf := AwgComposeId(AwgActiveDevice, Local)
+END;
+
+INTEGER PROCEDURE AwgBlockIdOf(INTEGER VALUE Bx, By, Bz);
+BEGIN
+    AwgBlockIdOf := Bx + 1024 * By + 1024 * 1024 * Bz
+END;
+
+INTEGER PROCEDURE AwgThreadIdOf(INTEGER VALUE Tx, Ty, Tz; INTEGER VALUE Bx);
+BEGIN
+    AwgThreadIdOf := Tx + 256 * Ty + 256 * 256 * Tz + 256 * 256 * 256 * (Bx REM 16)
+END;
+
+COMMENT BLOCK 038 default configuration;
+PROCEDURE AwgDefaultConfig;
+BEGIN
+    AwgConfig := AwgConfigRec(8192, 8192, 1024, 1, BeRef, 8, 8, 8, 1, 1, 1, 1)
+END;
+
+COMMENT BLOCK 033 version fill;
+PROCEDURE AwgFillVersion;
+BEGIN
+    AwgVersion := AwgVerRec(1, 0, 0, "v1.0.0")
+END;
+
+COMMENT BLOCK 021 capability fill — honest hardware flags;
+PROCEDURE AwgFillCaps;
+BEGIN
+    COMMENT GpuExec, HwSync, HwSimd, HwOccupancy remain 0 until a;
+    COMMENT real hardware backend is bound. RefExec and CpuExec are 1;
+    COMMENT because the reference interpreter runs in ALGOL W.;
+    AwgCaps := AwgCapRec(1, 1, 0, 1, 1, 1, 1, 0, 0, 0)
+END;
+
+COMMENT BLOCK 020 backend descriptor for the reference backend;
+PROCEDURE AwgFillRefBackend;
+BEGIN
+    AwgBackend := AwgBeRec(BeRef, 0, 1, 0, 256, 1024, 512, 32, 0, 0, "reference")
+END;
+
+COMMENT BLOCK 032 name table;
+PROCEDURE AwgNameClear;
+BEGIN
+    INTEGER N;
+    FOR N := 0 STEP 1 UNTIL 63 DO AwgName(N) := " "
+END;
+
+PROCEDURE AwgNameSet(INTEGER VALUE Id; STRING(48) VALUE S;
+                     INTEGER RESULT Status);
+BEGIN
+    IF (Id < 0) OR (Id > 63) THEN
+    BEGIN
+        Status := StBounds;
+        AwgSetStatus(StBounds, 32, Id)
+    END
+    ELSE
+    BEGIN
+        AwgName(Id) := S;
+        Status := StOk
+    END
+END;
+
+COMMENT BLOCK 036 log buffer;
+PROCEDURE AwgLogClear;
+BEGIN
+    INTEGER N;
+    AwgLogCount := 0;
+    FOR N := 0 STEP 1 UNTIL 63 DO AwgLog(N) := " "
+END;
+
+PROCEDURE AwgLogPush(STRING(80) VALUE Line; INTEGER RESULT Status);
+BEGIN
+    IF AwgLogCount >= 64 THEN Status := StFull
+    ELSE
+    BEGIN
+        AwgLog(AwgLogCount) := Line;
+        AwgLogCount := AwgLogCount + 1;
+        Status := StOk
+    END
+END;
+
+COMMENT BLOCK 029-031 handle allocator;
+INTEGER PROCEDURE AwgHandleAlloc(INTEGER VALUE RESULT Next;
+                                 INTEGER VALUE Cap;
+                                 INTEGER RESULT Status);
+BEGIN
+    IF Next >= Cap THEN
+    BEGIN
+        Status := StOom;
+        AwgSetStatus(StOom, 29, Next);
+        AwgHandleAlloc := -1
+    END
+    ELSE
+    BEGIN
+        AwgHandleAlloc := Next;
+        Next := Next + 1;
+        Status := StOk
+    END
+END;
+
+PROCEDURE AwgHandleValidate(INTEGER VALUE Id, Cap; INTEGER RESULT Status);
+BEGIN
+    IF (Id < 0) OR (Id >= Cap) THEN
+    BEGIN
+        Status := StInvalid;
+        AwgSetStatus(StInvalid, 31, Id)
+    END
+    ELSE Status := StOk
+END;
+
+COMMENT BLOCK 049 single-owner token;
+PROCEDURE AwgTakeOwner(INTEGER RESULT Status);
+BEGIN
+    IF AwgOwnerToken = 1 THEN
+    BEGIN
+        Status := StConflict;
+        AwgSetStatus(StConflict, 49, 1)
+    END
+    ELSE
+    BEGIN
+        AwgOwnerToken := 1;
+        Status := StOk
+    END
+END;
+
+PROCEDURE AwgDropOwner;
+BEGIN
+    AwgOwnerToken := 0
+END;
+
+COMMENT BLOCK 027 state validation;
+PROCEDURE AwgStateValidate(INTEGER RESULT Status);
+BEGIN
+    IF AwgInitialized # 1 THEN
+    BEGIN
+        Status := StNotInit;
+        AwgSetStatus(StNotInit, 27, 0)
+    END
+    ELSE IF AwgHostUsed < 0 THEN Status := StValidate
+    ELSE IF AwgHostUsed > CapHost THEN Status := StValidate
+    ELSE IF AwgDevUsed < 0 THEN Status := StValidate
+    ELSE IF AwgDevUsed > CapDev THEN Status := StValidate
+    ELSE IF AwgOpCount < 0 THEN Status := StValidate
+    ELSE IF AwgOpCount > CapOps THEN Status := StValidate
+    ELSE Status := StOk
+END;
+
+COMMENT BLOCK 028 invariant checking;
+PROCEDURE AwgInvariantCheck(INTEGER RESULT Status);
+BEGIN
+    INTEGER N, Bad;
+    Bad := 0;
+    AwgStateValidate(Status);
+    IF Status # StOk THEN Bad := 1;
+    IF AwgConfig = NULL THEN Bad := 1;
+    IF AwgCaps = NULL THEN Bad := 1;
+    IF AwgBackend = NULL THEN Bad := 1;
+    IF TileM <= 0 THEN Bad := 1;
+    IF TileN <= 0 THEN Bad := 1;
+    IF TileK <= 0 THEN Bad := 1;
+    FOR N := 0 STEP 1 UNTIL 31 DO
+        IF (AwgLaneAct(N) # 0) AND (AwgLaneAct(N) # 1) THEN Bad := 1;
+    IF Bad = 1 THEN
+    BEGIN
+        Status := StValidate;
+        AwgSetStatus(StValidate, 28, 0)
+    END
+    ELSE Status := StOk
+END;
+
+COMMENT BLOCK 039-041 exception flags (software);
+INTEGER AwgIntFlag;
+INTEGER AwgFltFlag;
+
+PROCEDURE AwgClearFlags;
+BEGIN
+    AwgIntFlag := 0;
+    AwgFltFlag := 0
+END;
+
+PROCEDURE AwgRaiseInt(INTEGER VALUE F);
+BEGIN
+    AwgIntFlag := AwgIOr(AwgIntFlag, F)
+END;
+
+PROCEDURE AwgRaiseFlt(INTEGER VALUE F);
+BEGIN
+    AwgFltFlag := AwgIOr(AwgFltFlag, F)
+END;
+
+COMMENT BLOCK 049 zero descriptor helpers;
+PROCEDURE AwgZeroBuf(INTEGER VALUE Id);
+BEGIN
+    IF (Id >= 0) AND (Id <= 63) THEN
+        AwgBufTab(Id) := AwgBufRec(Id, 0, 0, 0, 1, 0, 1, 0, BufFree, 0, 0, 0, 0)
+END;
+
+PROCEDURE AwgZeroKernel(INTEGER VALUE Id);
+BEGIN
+    IF (Id >= 0) AND (Id <= 31) THEN
+    BEGIN
+        AwgKTab(Id) := AwgKMetaRec(Id, 0, 0, 0, 0, 0, 0, 0, 0, " ");
+        AwgKStart(Id) := 0;
+        AwgKLen(Id) := 0;
+        AwgKValid(Id) := 0
+    END
+END;
+
+COMMENT BLOCK 035 trace;
+PROCEDURE AwgTracePush(INTEGER VALUE Op, Pc, Info, Stat);
+BEGIN
+    INTEGER S;
+    IF AwgTraceCount < 256 THEN
+    BEGIN
+        AwgTrTab(AwgTraceCount) := AwgTrRec(AwgCycle, Op, Pc, Info, Stat);
+        AwgTraceCount := AwgTraceCount + 1
+    END
+END;
+
+COMMENT BLOCK 025 runtime initialization;
+COMMENT Component: AwgRuntimeInit;
+COMMENT Purpose: construct tables, pools, caps, and default backend;
+COMMENT Inputs: none (uses AwgDefaultConfig);
+COMMENT Outputs: initialized runtime, Status;
+COMMENT Hardware: none — reference backend only;
+PROCEDURE AwgRuntimeInit(INTEGER RESULT Status);
+BEGIN
+    INTEGER N;
+    AwgInstallConstants;
+    AwgDefaultConfig;
+    AwgFillVersion;
+    AwgFillCaps;
+    AwgFillRefBackend;
+    AwgLastErr := AwgErrorRec(0, 0, 0, "ok");
+    AwgCtx := AwgCtxRec(0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, LifeIdle, BeRef, 0);
+    AwgLaunch := AwgLaunchRec(0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0);
+    AwgKMeta := AwgKMetaRec(0, 0, 0, 0, 0, 0, 0, 0, 0, "none");
+    AwgBarrier := AwgBarRec(0, 0, 0, 0, 0);
+    AwgFence := AwgFenceRec(0, 0, 1, 0);
+    AwgGrid := AwgDim3Rec(1, 1, 1);
+    AwgBlock := AwgDim3Rec(1, 1, 1);
+    AwgThread := AwgDim3Rec(0, 0, 0);
+    AwgLastTest := AwgTResRec(0, 0, 0, 0, 0);
+    AwgNameClear;
+    AwgLogClear;
+    AwgClearFlags;
+    AwgInitialized := 1;
+    AwgDetMode := 1;
+    AwgActiveBackend := BeRef;
+    AwgActiveDevice := 0;
+    AwgLastStatus := StOk;
+    AwgCycle := 0;
+    AwgOpIssued := 0;
+    AwgMemTraffic := 0;
+    AwgHaltFlag := 0;
+    AwgPc := 0;
+    AwgOpCount := 0;
+    AwgNextBuf := 0;
+    AwgNextKernel := 0;
+    AwgNextExec := 1;
+    AwgHostUsed := 0;
+    AwgDevUsed := 0;
+    AwgSharedUsed := 0;
+    AwgLocalUsed := 0;
+    AwgConstUsed := 0;
+    AwgTestPass := 0;
+    AwgTestFail := 0;
+    AwgTestSkip := 0;
+    AwgTraceCount := 0;
+    AwgQueueHead := 0;
+    AwgQueueTail := 0;
+    AwgQueueCount := 0;
+    AwgGraphCount := 0;
+    AwgMaskWord := 0;
+    AwgSeed := 1;
+    AwgReplay := 0;
+    AwgPriority := 0;
+    AwgStreamId := 0;
+    AwgFenceSeq := 0;
+    AwgOwnerToken := 0;
+    AwgVerifyLevel := 1;
+    FOR N := 0 STEP 1 UNTIL 8191 DO
+    BEGIN
+        AwgHostI(N) := 0; AwgHostR(N) := 0.0;
+        AwgDevI(N) := 0; AwgDevR(N) := 0.0
+    END;
+    FOR N := 0 STEP 1 UNTIL 1023 DO AwgSharedR(N) := 0.0;
+    FOR N := 0 STEP 1 UNTIL 255 DO
+    BEGIN
+        AwgLocalR(N) := 0.0;
+        AwgAcc(N) := 0.0;
+        AwgTileA(N) := 0.0;
+        AwgTileB(N) := 0.0;
+        AwgRedTmp(N) := 0.0;
+        AwgScanTmp(N) := 0.0;
+        AwgFuseTmp(N) := 0.0
+    END;
+    FOR N := 0 STEP 1 UNTIL 511 DO AwgConstR(N) := 0.0;
+    FOR N := 0 STEP 1 UNTIL 63 DO
+    BEGIN
+        AwgIReg(N) := 0;
+        AwgFReg(N) := 0.0;
+        AwgZeroBuf(N);
+        AwgBufOwner(N) := 0;
+        AwgBufLife(N) := 0;
+        AwgBufSpace(N) := 0;
+        AwgOpHist(N) := 0;
+        AwgHist(N) := 0
+    END;
+    FOR N := 0 STEP 1 UNTIL 31 DO
+    BEGIN
+        AwgPReg(N) := TRUE;
+        AwgLaneAct(N) := 1;
+        AwgZeroKernel(N);
+        AwgTenTab(N) := AwgTenRec(N, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, KindReal, LayContig, MemHost, -1);
+        AwgGTab(N) := AwgNodeRec(N, 0, 0, -1, -1, -1, -1, -1, 0);
+        AwgGDep(N) := 0;
+        AwgReplayKey(N) := 0
+    END;
+    FOR N := 0 STEP 1 UNTIL 2047 DO
+    BEGIN
+        AwgOpCode(N) := 0; AwgOpDst(N) := 0; AwgOpSrc0(N) := 0;
+        AwgOpSrc1(N) := 0; AwgOpSrc2(N) := 0; AwgOpImm(N) := 0;
+        AwgOpPred(N) := -1; AwgOpSpace(N) := MemRegister; AwgOpFlags(N) := 0
+    END;
+    FOR N := 0 STEP 1 UNTIL 15 DO
+        AwgArgTab(N) := AwgArgRec(N, 0, 0, -1, 0, 0);
+    FOR N := 0 STEP 1 UNTIL 63 DO
+    BEGIN
+        AwgQTab(N) := AwgCmdRec(0, 0, -1, -1, 0, 0, StOk);
+        AwgWorkLo(N) := 0; AwgWorkHi(N) := 0
+    END;
+    FOR N := 0 STEP 1 UNTIL 7 DO AwgSpaceBytes(N) := 0;
+    FOR N := 1 STEP 1 UNTIL 500 DO
+    BEGIN
+        AwgBlockName(N) := " ";
+        AwgBlockImpl(N) := 0;
+        AwgBlockHw(N) := 0;
+        AwgBlockVerif(N) := 0
+    END;
+    AwgSetStatus(StOk, 25, 0);
+    Status := StOk
+END;
+
+COMMENT BLOCK 026 runtime shutdown;
+PROCEDURE AwgRuntimeShutdown(INTEGER RESULT Status);
+BEGIN
+    INTEGER N;
+    IF AwgInitialized # 1 THEN
+    BEGIN
+        Status := StNotInit;
+        AwgSetStatus(StNotInit, 26, 0)
+    END
+    ELSE
+    BEGIN
+        FOR N := 0 STEP 1 UNTIL 63 DO
+        BEGIN
+            IF AwgBufTab(N) # NULL THEN AwgBufTab(N).State := BufReleased
+        END;
+        AwgInitialized := 0;
+        AwgDropOwner;
+        IF AwgCtx # NULL THEN AwgCtx.Life := LifeShutdown;
+        Status := StOk;
+        AwgSetStatus(StOk, 26, 0)
+    END
+END;
+
+COMMENT BLOCK 050 foundation self-test;
+PROCEDURE AwgFoundationTest(INTEGER RESULT Status);
+BEGIN
+    INTEGER A, B, C, S;
+    IF AwgInitialized # 1 THEN AwgRuntimeInit(S);
+    A := AwgIAnd(12, 10);
+    B := AwgIOr(12, 10);
+    C := AwgIXor(12, 10);
+    IF A # 8 THEN Status := StValidate
+    ELSE IF B # 14 THEN Status := StValidate
+    ELSE IF C # 6 THEN Status := StValidate
+    ELSE IF AwgAlignUp(13, 8) # 16 THEN Status := StValidate
+    ELSE IF AwgPopc(7) # 3 THEN Status := StValidate
+    ELSE IF AwgIMin(3, 5) # 3 THEN Status := StValidate
+    ELSE IF AwgComposeId(1, 7) # AwgPackBits(7, 16, 0, AwgIShl(1, 16)) THEN
+        Status := StValidate
+    ELSE
+    BEGIN
+        AwgInvariantCheck(Status);
+        IF Status = StOk THEN AwgTestPass := AwgTestPass + 1
+    END;
+    IF Status # StOk THEN AwgTestFail := AwgTestFail + 1;
+    AwgSetStatus(Status, 50, A)
+END;

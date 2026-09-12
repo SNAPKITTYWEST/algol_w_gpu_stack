@@ -1,0 +1,131 @@
+COMMENT ============================================================;
+COMMENT BLOCK 007 / 009 / 033 — constant installer and limits;
+COMMENT Must be the first procedure. Called by AwgRuntimeInit.;
+COMMENT ============================================================;
+
+COMMENT BLOCK 023;
+COMMENT Component: AwgSetStatus;
+COMMENT Purpose: record last status and error payload;
+COMMENT Inputs: Code, BlockNo, Info;
+COMMENT Outputs: AwgLastStatus, AwgErr*;
+COMMENT Dependencies: error globals;
+COMMENT Hardware: none;
+PROCEDURE AwgSetStatus(INTEGER VALUE Code, BlockNo, Info);
+BEGIN
+    AwgLastStatus := Code;
+    AwgErrCode := Code;
+    AwgErrBlock := BlockNo;
+    AwgErrInfo := Info;
+    IF AwgLastErr # NULL THEN
+    BEGIN
+        AwgLastErr.Code := Code;
+        AwgLastErr.BlockNo := BlockNo;
+        AwgLastErr.Info := Info
+    END
+END;
+
+COMMENT BLOCK 034;
+COMMENT Component: AwgBumpCycle;
+COMMENT Purpose: software cycle counter, not a hardware clock;
+PROCEDURE AwgBumpCycle;
+BEGIN
+    AwgCycle := AwgCycle + 1
+END;
+
+COMMENT BLOCK 146;
+COMMENT Component: AwgBumpTraffic;
+COMMENT Purpose: count words moved through the software memory model;
+PROCEDURE AwgBumpTraffic(INTEGER VALUE N);
+BEGIN
+    AwgMemTraffic := AwgMemTraffic + N
+END;
+
+COMMENT BLOCK 175;
+COMMENT Component: AwgBumpOp;
+COMMENT Purpose: instruction issue counter for diagnostics;
+PROCEDURE AwgBumpOp(INTEGER VALUE Code);
+BEGIN
+    AwgOpIssued := AwgOpIssued + 1;
+    IF (Code >= 0) AND (Code <= 63) THEN
+        AwgOpHist(Code) := AwgOpHist(Code) + 1
+END;
+
+COMMENT BLOCK 009;
+COMMENT Component: AwgInstallConstants;
+COMMENT Purpose: bind every global code, limit, and opcode id;
+COMMENT Inputs: none;
+COMMENT Outputs: all status/space/opcode globals;
+COMMENT Dependencies: AwgHead declarations;
+COMMENT Hardware: none;
+PROCEDURE AwgInstallConstants;
+BEGIN
+    KindNone := 0; KindInt := 1; KindReal := 2;
+    KindLong := 3; KindLog := 4; KindBits := 5;
+
+    IntWidth := 32; IntSigned := 1;
+    MaxInt := 2147483647; MinInt := -2147483647;
+
+    RealWidth := 32; LongWidth := 64;
+    RealEps := 9.53674316'-7;
+    RealMax := 1.0'+38;
+    LongEps := 2.16840434'-19L;
+
+    StOk := 0; StErr := 1; StInvalid := 2; StOom := 3;
+    StBounds := 4; StAlign := 5; StUnimpl := 6; StHwDep := 7;
+    StDim := 8; StOverflow := 9; StDivZero := 10; StDomain := 11;
+    StAlias := 12; StLifetime := 13; StBackend := 14; StNotInit := 15;
+    StConflict := 16; StValidate := 17; StTimeout := 18; StMask := 19;
+    StNotReady := 20; StBusy := 21; StIo := 22; StFormat := 23;
+    StVersion := 24; StNullRef := 25; StFull := 26; StEmpty := 27;
+    StCycle := 28; StPred := 29; StArity := 30; StOpcode := 31;
+    StOperand := 32; StKernel := 33; StLaunch := 34; StFence := 35;
+    StQueue := 36; StGraph := 37; StPlan := 38;
+
+    MemNone := 0; MemHost := 1; MemDevice := 2; MemShared := 3;
+    MemLocal := 4; MemConstant := 5; MemRegister := 6;
+
+    BufFree := 0; BufAlloc := 1; BufMapped := 2;
+    BufReleased := 3; BufError := 4;
+
+    BeNone := 0; BeRef := 1; BeCpu := 2; BeGpu := 3; BeAccel := 4;
+
+    LifeIdle := 0; LifeInit := 1; LifeReady := 2; LifeLaunch := 3;
+    LifeRun := 4; LifeWait := 5; LifeDone := 6; LifeFail := 7;
+    LifeShutdown := 8;
+
+    OpNop := 0; OpHalt := 1; OpMov := 2; OpLoad := 3;
+    OpStore := 4; OpLoadi := 5;
+    OpIadd := 10; OpIsub := 11; OpImul := 12; OpIdiv := 13; OpIrem := 14;
+    OpIand := 15; OpIor := 16; OpIxor := 17; OpInot := 18;
+    OpIshl := 19; OpIshr := 20; OpIcmp := 21; OpSel := 22;
+    OpIneg := 23; OpIabs := 24;
+    OpFadd := 30; OpFsub := 31; OpFmul := 32; OpFdiv := 33; OpFfma := 34;
+    OpFmin := 35; OpFmax := 36; OpFabs := 37; OpFsqrt := 38;
+    OpFrcp := 39; OpFrsqrt := 40; OpFpow := 41; OpFlog := 42;
+    OpFexp := 43; OpFneg := 44; OpFcmp := 45;
+    OpVadd := 50; OpVsub := 51; OpVscale := 52; OpDot := 53;
+    OpReduce := 54; OpScan := 55; OpGemv := 56; OpGemm := 57;
+    OpTpose := 58; OpGather := 59; OpScatter := 60;
+    OpMap := 61; OpConv := 62; OpStencil := 63; OpPool := 64;
+    OpHist := 65; OpBarrier := 66; OpPred := 67; OpJump := 68;
+    OpCjump := 69; OpLabel := 70; OpFill := 71; OpCopy := 72;
+    OpAxpy := 73; OpGer := 74; OpSoftmax := 75;
+    OpSync := 76; OpFence := 77; OpTrace := 78; OpCount := 79;
+
+    CmpEq := 0; CmpNe := 1; CmpLt := 2; CmpLe := 3;
+    CmpGt := 4; CmpGe := 5;
+
+    LayContig := 0; LayTiled := 1; LayRow := 2; LayCol := 3;
+
+    TileM := 8; TileN := 8; TileK := 8;
+    WarpSize := 32; MaxThreads := 256;
+    MaxGridX := 65535; MaxGridY := 65535; MaxGridZ := 65535;
+
+    CapHost := 8192; CapDev := 8192; CapShared := 1024;
+    CapLocal := 256; CapConst := 512;
+    CapIreg := 64; CapFreg := 64; CapPreg := 32;
+    CapOps := 2048; CapBufs := 64; CapKernels := 32;
+    CapQueue := 64; CapGraph := 32; CapArgs := 16;
+    CapNames := 64; CapTrace := 256; CapBlocks := 500;
+    CapMask := 32
+END;

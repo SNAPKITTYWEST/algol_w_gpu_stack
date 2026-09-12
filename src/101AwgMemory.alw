@@ -1,0 +1,609 @@
+COMMENT ============================================================;
+COMMENT BLOCKS 101-150 — abstract memory architecture;
+COMMENT Host/device/shared/local/constant are ALGOL W arrays.;
+COMMENT They implement the software memory model. They are not;
+COMMENT GPU VRAM. A hardware backend must copy through the;
+COMMENT backend interface (BLOCKS 389-390) into real device memory.;
+COMMENT ============================================================;
+
+INTEGER PROCEDURE AwgSpaceCap(INTEGER VALUE Space);
+BEGIN
+    IF Space = MemHost THEN AwgSpaceCap := CapHost
+    ELSE IF Space = MemDevice THEN AwgSpaceCap := CapDev
+    ELSE IF Space = MemShared THEN AwgSpaceCap := CapShared
+    ELSE IF Space = MemLocal THEN AwgSpaceCap := CapLocal
+    ELSE IF Space = MemConstant THEN AwgSpaceCap := CapConst
+    ELSE IF Space = MemRegister THEN AwgSpaceCap := CapFreg
+    ELSE AwgSpaceCap := 0
+END;
+
+INTEGER PROCEDURE AwgSpaceUsed(INTEGER VALUE Space);
+BEGIN
+    IF Space = MemHost THEN AwgSpaceUsed := AwgHostUsed
+    ELSE IF Space = MemDevice THEN AwgSpaceUsed := AwgDevUsed
+    ELSE IF Space = MemShared THEN AwgSpaceUsed := AwgSharedUsed
+    ELSE IF Space = MemLocal THEN AwgSpaceUsed := AwgLocalUsed
+    ELSE IF Space = MemConstant THEN AwgSpaceUsed := AwgConstUsed
+    ELSE AwgSpaceUsed := 0
+END;
+
+PROCEDURE AwgSpaceAddUsed(INTEGER VALUE Space, N);
+BEGIN
+    IF Space = MemHost THEN AwgHostUsed := AwgHostUsed + N
+    ELSE IF Space = MemDevice THEN AwgDevUsed := AwgDevUsed + N
+    ELSE IF Space = MemShared THEN AwgSharedUsed := AwgSharedUsed + N
+    ELSE IF Space = MemLocal THEN AwgLocalUsed := AwgLocalUsed + N
+    ELSE IF Space = MemConstant THEN AwgConstUsed := AwgConstUsed + N
+END;
+
+COMMENT BLOCK 113 bounds checking;
+PROCEDURE AwgBoundsCheck(INTEGER VALUE Space, Off, Len; INTEGER RESULT Status);
+BEGIN
+    INTEGER Cap;
+    Cap := AwgSpaceCap(Space);
+    IF Cap <= 0 THEN
+    BEGIN
+        Status := StInvalid;
+        AwgSetStatus(StInvalid, 113, Space)
+    END
+    ELSE IF (Off < 0) OR (Len < 0) OR (Off + Len > Cap) THEN
+    BEGIN
+        Status := StBounds;
+        AwgSetStatus(StBounds, 113, Off)
+    END
+    ELSE Status := StOk
+END;
+
+COMMENT BLOCK 106 register-like scalar state;
+PROCEDURE AwgRegWriteI(INTEGER VALUE R, V; INTEGER RESULT Status);
+BEGIN
+    IF (R < 0) OR (R >= CapIreg) THEN Status := StBounds
+    ELSE BEGIN AwgIReg(R) := V; Status := StOk END
+END;
+
+PROCEDURE AwgRegWriteF(INTEGER VALUE R; REAL VALUE V; INTEGER RESULT Status);
+BEGIN
+    IF (R < 0) OR (R >= CapFreg) THEN Status := StBounds
+    ELSE BEGIN AwgFReg(R) := V; Status := StOk END
+END;
+
+INTEGER PROCEDURE AwgRegReadI(INTEGER VALUE R; INTEGER RESULT Status);
+BEGIN
+    IF (R < 0) OR (R >= CapIreg) THEN
+    BEGIN Status := StBounds; AwgRegReadI := 0 END
+    ELSE BEGIN Status := StOk; AwgRegReadI := AwgIReg(R) END
+END;
+
+REAL PROCEDURE AwgRegReadF(INTEGER VALUE R; INTEGER RESULT Status);
+BEGIN
+    IF (R < 0) OR (R >= CapFreg) THEN
+    BEGIN Status := StBounds; AwgRegReadF := 0.0 END
+    ELSE BEGIN Status := StOk; AwgRegReadF := AwgFReg(R) END
+END;
+
+COMMENT BLOCK 114-118 addressing;
+INTEGER PROCEDURE AwgAddrCalc(INTEGER VALUE Base, Index, Stride, Offset);
+BEGIN
+    AwgAddrCalc := Base + Index * Stride + Offset
+END;
+
+INTEGER PROCEDURE AwgLinearIndex(INTEGER VALUE I, J, Ldm);
+BEGIN
+    AwgLinearIndex := I * Ldm + J
+END;
+
+INTEGER PROCEDURE AwgNdIndex(INTEGER VALUE I0, I1, I2, S0, S1, S2);
+BEGIN
+    AwgNdIndex := I0 * S0 + I1 * S1 + I2 * S2
+END;
+
+INTEGER PROCEDURE AwgRowMajor(INTEGER VALUE I, J, Cols);
+BEGIN
+    AwgRowMajor := I * Cols + J
+END;
+
+INTEGER PROCEDURE AwgTiledAddr(INTEGER VALUE I, J, Rows, Cols, Tm, Tn);
+BEGIN
+    INTEGER Br, Bc, Tr, Tc, TilesN;
+    IF (Tm <= 0) OR (Tn <= 0) THEN AwgTiledAddr := I * Cols + J
+    ELSE
+    BEGIN
+        Br := I DIV Tm; Bc := J DIV Tn;
+        Tr := I REM Tm; Tc := J REM Tn;
+        TilesN := (Cols + Tn - 1) DIV Tn;
+        AwgTiledAddr := ((Br * TilesN + Bc) * Tm * Tn) + (Tr * Tn + Tc)
+    END
+END;
+
+COMMENT BLOCK 135-136 element size and pitch;
+INTEGER PROCEDURE AwgElemSizeOf(INTEGER VALUE Kind);
+BEGIN
+    AwgElemSizeOf := AwgSizeOfKind(Kind)
+END;
+
+INTEGER PROCEDURE AwgPitchOf(INTEGER VALUE Cols, Align);
+BEGIN
+    AwgPitchOf := AwgAlignUp(Cols, Align)
+END;
+
+COMMENT real load/store with space dispatch — used by the whole stack;
+REAL PROCEDURE AwgRLoad(INTEGER VALUE Space, Off; INTEGER RESULT Status);
+BEGIN
+    AwgBoundsCheck(Space, Off, 1, Status);
+    IF Status # StOk THEN AwgRLoad := 0.0
+    ELSE IF Space = MemHost THEN AwgRLoad := AwgHostR(Off)
+    ELSE IF Space = MemDevice THEN AwgRLoad := AwgDevR(Off)
+    ELSE IF Space = MemShared THEN AwgRLoad := AwgSharedR(Off)
+    ELSE IF Space = MemLocal THEN AwgRLoad := AwgLocalR(Off)
+    ELSE IF Space = MemConstant THEN AwgRLoad := AwgConstR(Off)
+    ELSE IF Space = MemRegister THEN AwgRLoad := AwgFReg(Off)
+    ELSE BEGIN Status := StInvalid; AwgRLoad := 0.0 END
+END;
+
+PROCEDURE AwgRStore(INTEGER VALUE Space, Off; REAL VALUE V; INTEGER RESULT Status);
+BEGIN
+    AwgBoundsCheck(Space, Off, 1, Status);
+    IF Status = StOk THEN
+    BEGIN
+        IF Space = MemHost THEN AwgHostR(Off) := V
+        ELSE IF Space = MemDevice THEN AwgDevR(Off) := V
+        ELSE IF Space = MemShared THEN AwgSharedR(Off) := V
+        ELSE IF Space = MemLocal THEN AwgLocalR(Off) := V
+        ELSE IF Space = MemConstant THEN AwgConstR(Off) := V
+        ELSE IF Space = MemRegister THEN AwgFReg(Off) := V
+        ELSE Status := StInvalid;
+        IF Status = StOk THEN AwgBumpTraffic(1)
+    END
+END;
+
+INTEGER PROCEDURE AwgILoad(INTEGER VALUE Space, Off; INTEGER RESULT Status);
+BEGIN
+    AwgBoundsCheck(Space, Off, 1, Status);
+    IF Status # StOk THEN AwgILoad := 0
+    ELSE IF Space = MemHost THEN AwgILoad := AwgHostI(Off)
+    ELSE IF Space = MemDevice THEN AwgILoad := AwgDevI(Off)
+    ELSE BEGIN Status := StInvalid; AwgILoad := 0 END
+END;
+
+PROCEDURE AwgIStore(INTEGER VALUE Space, Off; INTEGER VALUE V; INTEGER RESULT Status);
+BEGIN
+    AwgBoundsCheck(Space, Off, 1, Status);
+    IF Status = StOk THEN
+    BEGIN
+        IF Space = MemHost THEN AwgHostI(Off) := V
+        ELSE IF Space = MemDevice THEN AwgDevI(Off) := V
+        ELSE Status := StInvalid;
+        IF Status = StOk THEN AwgBumpTraffic(1)
+    END
+END;
+
+COMMENT BLOCK 128 alias detection;
+LOGICAL PROCEDURE AwgRangesAlias(INTEGER VALUE Aoff, Alen, Boff, Blen);
+BEGIN
+    IF (Alen <= 0) OR (Blen <= 0) THEN AwgRangesAlias := FALSE
+    ELSE AwgRangesAlias := (Aoff < Boff + Blen) AND (Boff < Aoff + Alen)
+END;
+
+COMMENT BLOCK 107-109 buffer allocation;
+PROCEDURE AwgBufAlloc(INTEGER VALUE Space, Length, Kind, Align;
+                      INTEGER RESULT Bid, Status);
+BEGIN
+    INTEGER Off, Cap, Used, A, Id;
+    Bid := -1;
+    IF AwgInitialized # 1 THEN
+    BEGIN Status := StNotInit; AwgSetStatus(StNotInit, 107, 0) END
+    ELSE IF Length < 0 THEN
+    BEGIN Status := StInvalid; AwgSetStatus(StInvalid, 107, Length) END
+    ELSE
+    BEGIN
+        A := Align;
+        IF A <= 0 THEN A := 1;
+        Cap := AwgSpaceCap(Space);
+        Used := AwgSpaceUsed(Space);
+        Off := AwgAlignUp(Used, A);
+        IF Off + Length > Cap THEN
+        BEGIN
+            Status := StOom;
+            AwgSetStatus(StOom, 107, Length)
+        END
+        ELSE
+        BEGIN
+            Id := AwgHandleAlloc(AwgNextBuf, CapBufs, Status);
+            IF Status = StOk THEN
+            BEGIN
+                AwgBufTab(Id) := AwgBufRec(Id, Space, Off, Length, 1, Kind, A,
+                                          AwgOwnerToken, BufAlloc, Length, Length, 1, 1);
+                AwgBufOwner(Id) := AwgOwnerToken;
+                AwgBufLife(Id) := 1;
+                AwgBufSpace(Id) := Space;
+                AwgSpaceAddUsed(Space, (Off + Length) - Used);
+                AwgSpaceBytes(Space) := AwgSpaceBytes(Space) + Length;
+                Bid := Id;
+                Status := StOk
+            END
+        END
+    END
+END;
+
+COMMENT BLOCK 108 release;
+PROCEDURE AwgBufRelease(INTEGER VALUE Bid; INTEGER RESULT Status);
+BEGIN
+    AwgHandleValidate(Bid, CapBufs, Status);
+    IF Status # StOk THEN
+        Status := Status
+    ELSE IF AwgBufTab(Bid) = NULL THEN Status := StNullRef
+    ELSE IF AwgBufTab(Bid).State = BufReleased THEN Status := StLifetime
+    ELSE
+    BEGIN
+        AwgBufTab(Bid).State := BufReleased;
+        AwgBufLife(Bid) := 0;
+        Status := StOk
+    END
+END;
+
+COMMENT BLOCK 109 descriptor fill;
+PROCEDURE AwgBufDescFill(INTEGER VALUE Bid, Space, Off, Len, Stride, Kind;
+                         INTEGER RESULT Status);
+BEGIN
+    AwgHandleValidate(Bid, CapBufs, Status);
+    IF Status = StOk THEN
+    BEGIN
+        AwgBoundsCheck(Space, Off, Len, Status);
+        IF Status = StOk THEN
+            AwgBufTab(Bid) := AwgBufRec(Bid, Space, Off, Len, Stride, Kind,
+                                        1, AwgOwnerToken, BufAlloc, Len, Len, 1, 1)
+    END
+END;
+
+COMMENT BLOCK 126-127 ownership and lifetime;
+PROCEDURE AwgOwnershipCheck(INTEGER VALUE Bid; INTEGER RESULT Status);
+BEGIN
+    AwgHandleValidate(Bid, CapBufs, Status);
+    IF Status # StOk THEN Status := Status
+    ELSE IF AwgBufTab(Bid) = NULL THEN Status := StNullRef
+    ELSE IF AwgBufLife(Bid) = 0 THEN
+    BEGIN Status := StLifetime; AwgSetStatus(StLifetime, 127, Bid) END
+    ELSE Status := StOk
+END;
+
+COMMENT BLOCK 129 invalid-access detection;
+PROCEDURE AwgAccessCheck(INTEGER VALUE Bid, Index; INTEGER RESULT Status);
+BEGIN
+    AwgOwnershipCheck(Bid, Status);
+    IF Status = StOk THEN
+    BEGIN
+        IF (Index < 0) OR (Index >= AwgBufTab(Bid).Length) THEN
+        BEGIN
+            Status := StBounds;
+            AwgSetStatus(StBounds, 129, Index)
+        END
+    END
+END;
+
+COMMENT BLOCK 119 memory copy between spaces;
+PROCEDURE AwgMemCopy(INTEGER VALUE SrcSpace, SrcOff, DstSpace, DstOff, Len;
+                     INTEGER RESULT Status);
+BEGIN
+    INTEGER N;
+    REAL V;
+    INTEGER IV;
+    AwgBoundsCheck(SrcSpace, SrcOff, Len, Status);
+    IF Status = StOk THEN AwgBoundsCheck(DstSpace, DstOff, Len, Status);
+    IF Status # StOk THEN
+        Status := Status
+    ELSE IF (SrcSpace = DstSpace) AND AwgRangesAlias(SrcOff, Len, DstOff, Len) THEN
+    BEGIN
+        Status := StAlias;
+        AwgSetStatus(StAlias, 119, SrcOff)
+    END
+    ELSE
+    BEGIN
+        FOR N := 0 STEP 1 UNTIL Len - 1 DO
+        BEGIN
+            V := AwgRLoad(SrcSpace, SrcOff + N, Status);
+            IF Status # StOk THEN N := Len
+            ELSE AwgRStore(DstSpace, DstOff + N, V, Status)
+        END
+    END
+END;
+
+COMMENT integer copy for index buffers;
+PROCEDURE AwgMemCopyI(INTEGER VALUE SrcSpace, SrcOff, DstSpace, DstOff, Len;
+                      INTEGER RESULT Status);
+BEGIN
+    INTEGER N, V;
+    AwgBoundsCheck(SrcSpace, SrcOff, Len, Status);
+    IF Status = StOk THEN AwgBoundsCheck(DstSpace, DstOff, Len, Status);
+    IF Status = StOk THEN
+    BEGIN
+        IF (SrcSpace # MemHost) AND (SrcSpace # MemDevice) THEN Status := StInvalid
+        ELSE IF (DstSpace # MemHost) AND (DstSpace # MemDevice) THEN Status := StInvalid
+        ELSE
+        FOR N := 0 STEP 1 UNTIL Len - 1 DO
+        BEGIN
+            V := AwgILoad(SrcSpace, SrcOff + N, Status);
+            IF Status = StOk THEN AwgIStore(DstSpace, DstOff + N, V, Status)
+        END
+    END
+END;
+
+COMMENT BLOCK 120 host to device;
+PROCEDURE AwgH2D(INTEGER VALUE SrcOff, DstOff, Len; INTEGER RESULT Status);
+BEGIN
+    COMMENT Software copy HostR -> DevR. This is NOT a PCIe DMA.;
+    COMMENT A hardware backend must replace this with a real transfer.;
+    AwgMemCopy(MemHost, SrcOff, MemDevice, DstOff, Len, Status)
+END;
+
+COMMENT BLOCK 121 device to host;
+PROCEDURE AwgD2H(INTEGER VALUE SrcOff, DstOff, Len; INTEGER RESULT Status);
+BEGIN
+    AwgMemCopy(MemDevice, SrcOff, MemHost, DstOff, Len, Status)
+END;
+
+COMMENT BLOCK 122 device to device;
+PROCEDURE AwgD2D(INTEGER VALUE SrcOff, DstOff, Len; INTEGER RESULT Status);
+BEGIN
+    AwgMemCopy(MemDevice, SrcOff, MemDevice, DstOff, Len, Status)
+END;
+
+COMMENT BLOCK 123-124 init and clear;
+PROCEDURE AwgMemClear(INTEGER VALUE Space, Off, Len; INTEGER RESULT Status);
+BEGIN
+    INTEGER N;
+    AwgBoundsCheck(Space, Off, Len, Status);
+    IF Status = StOk THEN
+        FOR N := 0 STEP 1 UNTIL Len - 1 DO
+            AwgRStore(Space, Off + N, 0.0, Status)
+END;
+
+PROCEDURE AwgMemInit(INTEGER VALUE Space, Off, Len; REAL VALUE V;
+                     INTEGER RESULT Status);
+BEGIN
+    INTEGER N;
+    AwgBoundsCheck(Space, Off, Len, Status);
+    IF Status = StOk THEN
+        FOR N := 0 STEP 1 UNTIL Len - 1 DO
+            AwgRStore(Space, Off + N, V, Status)
+END;
+
+PROCEDURE AwgFillReal(INTEGER VALUE Space, Off, Len; REAL VALUE V;
+                      INTEGER RESULT Status);
+BEGIN
+    AwgMemInit(Space, Off, Len, V, Status)
+END;
+
+PROCEDURE AwgFillInt(INTEGER VALUE Space, Off, Len; INTEGER VALUE V;
+                     INTEGER RESULT Status);
+BEGIN
+    INTEGER N;
+    AwgBoundsCheck(Space, Off, Len, Status);
+    IF Status = StOk THEN
+        FOR N := 0 STEP 1 UNTIL Len - 1 DO
+            AwgIStore(Space, Off + N, V, Status)
+END;
+
+COMMENT BLOCK 125 memory validation;
+PROCEDURE AwgMemValidate(INTEGER RESULT Status);
+BEGIN
+    INTEGER N, Bad;
+    Bad := 0;
+    IF AwgHostUsed > CapHost THEN Bad := 1;
+    IF AwgDevUsed > CapDev THEN Bad := 1;
+    IF AwgSharedUsed > CapShared THEN Bad := 1;
+    FOR N := 0 STEP 1 UNTIL AwgNextBuf - 1 DO
+    BEGIN
+        IF AwgBufTab(N) # NULL THEN
+        BEGIN
+            IF AwgBufTab(N).Offset < 0 THEN Bad := 1;
+            IF AwgBufTab(N).Length < 0 THEN Bad := 1
+        END
+    END;
+    IF Bad = 1 THEN
+    BEGIN Status := StValidate; AwgSetStatus(StValidate, 125, 0) END
+    ELSE Status := StOk
+END;
+
+COMMENT BLOCK 130 pin host — hardware dependent;
+PROCEDURE AwgPinHost(INTEGER VALUE Bid; INTEGER RESULT Status);
+BEGIN
+    COMMENT Page-locked host memory requires OS/GPU driver support.;
+    AwgOwnershipCheck(Bid, Status);
+    IF Status = StOk THEN
+    BEGIN
+        Status := StHwDep;
+        AwgSetStatus(StHwDep, 130, Bid)
+    END
+END;
+
+COMMENT BLOCK 131-132 map/unmap — software view only;
+PROCEDURE AwgMapBuffer(INTEGER VALUE Bid; INTEGER RESULT Off, Status);
+BEGIN
+    AwgOwnershipCheck(Bid, Status);
+    IF Status = StOk THEN
+    BEGIN
+        AwgBufTab(Bid).State := BufMapped;
+        Off := AwgBufTab(Bid).Offset;
+        COMMENT Mapping device memory into a host pointer is hardware.;
+        IF AwgBufTab(Bid).Space = MemDevice THEN
+            COMMENT software still returns the DevR offset; not a GPU map;
+            Off := Off
+    END
+    ELSE Off := -1
+END;
+
+PROCEDURE AwgUnmapBuffer(INTEGER VALUE Bid; INTEGER RESULT Status);
+BEGIN
+    AwgOwnershipCheck(Bid, Status);
+    IF Status = StOk THEN AwgBufTab(Bid).State := BufAlloc
+END;
+
+COMMENT BLOCK 133-134 views and sub-buffers;
+PROCEDURE AwgView(INTEGER VALUE Bid, Off, Len; INTEGER RESULT VBid, Status);
+BEGIN
+    INTEGER Space, Kind, Base;
+    VBid := -1;
+    AwgOwnershipCheck(Bid, Status);
+    IF Status = StOk THEN
+    BEGIN
+        IF (Off < 0) OR (Len < 0) OR (Off + Len > AwgBufTab(Bid).Length) THEN
+            Status := StBounds
+        ELSE
+        BEGIN
+            Space := AwgBufTab(Bid).Space;
+            Kind := AwgBufTab(Bid).ElemKind;
+            Base := AwgBufTab(Bid).Offset + Off;
+            AwgBufAlloc(Space, 0, Kind, 1, VBid, Status);
+            COMMENT length-0 alloc then overwrite descriptor to view;
+            IF Status = StOk THEN
+            BEGIN
+                AwgBufTab(VBid).Offset := Base;
+                AwgBufTab(VBid).Length := Len;
+                AwgBufTab(VBid).Space := Space;
+                AwgBufTab(VBid).ElemKind := Kind;
+                AwgBufTab(VBid).State := BufAlloc
+            END
+        END
+    END
+END;
+
+PROCEDURE AwgSubBuffer(INTEGER VALUE Bid, Off, Len; INTEGER RESULT VBid, Status);
+BEGIN
+    AwgView(Bid, Off, Len, VBid, Status)
+END;
+
+COMMENT BLOCK 137-138 pitched copies;
+PROCEDURE AwgCopy2D(INTEGER VALUE SrcSpace, SrcOff, SrcPitch,
+                           DstSpace, DstOff, DstPitch,
+                           Width, Height; INTEGER RESULT Status);
+BEGIN
+    INTEGER R;
+    Status := StOk;
+    FOR R := 0 STEP 1 UNTIL Height - 1 DO
+    BEGIN
+        AwgMemCopy(SrcSpace, SrcOff + R * SrcPitch,
+                   DstSpace, DstOff + R * DstPitch, Width, Status);
+        IF Status # StOk THEN R := Height
+    END
+END;
+
+PROCEDURE AwgCopy3D(INTEGER VALUE SrcSpace, SrcOff, SrcP, SrcD,
+                           DstSpace, DstOff, DstP, DstD,
+                           Width, Height, Depth; INTEGER RESULT Status);
+BEGIN
+    INTEGER Z;
+    Status := StOk;
+    FOR Z := 0 STEP 1 UNTIL Depth - 1 DO
+    BEGIN
+        AwgCopy2D(SrcSpace, SrcOff + Z * SrcD, SrcP,
+                  DstSpace, DstOff + Z * DstD, DstP,
+                  Width, Height, Status);
+        IF Status # StOk THEN Z := Depth
+    END
+END;
+
+COMMENT BLOCK 141 software memory fence;
+PROCEDURE AwgMemFenceSoft(INTEGER RESULT Status);
+BEGIN
+    COMMENT ALGOL W evaluation is sequential; this is a no-op fence;
+    COMMENT that still advances the cycle counter for tracing.;
+    AwgBumpCycle;
+    Status := StOk
+END;
+
+COMMENT BLOCK 142-143 hardware prefetch and coherence;
+PROCEDURE AwgPrefetch(INTEGER VALUE Bid; INTEGER RESULT Status);
+BEGIN
+    AwgOwnershipCheck(Bid, Status);
+    IF Status = StOk THEN
+    BEGIN Status := StHwDep; AwgSetStatus(StHwDep, 142, Bid) END
+END;
+
+PROCEDURE AwgCoherence(INTEGER RESULT Status);
+BEGIN
+    COMMENT Cache coherence protocol is hardware.;
+    Status := StHwDep;
+    AwgSetStatus(StHwDep, 143, 0)
+END;
+
+COMMENT BLOCK 144-145 shared-memory bank model (software estimate);
+INTEGER PROCEDURE AwgSharedBank(INTEGER VALUE Addr, Nbanks);
+BEGIN
+    INTEGER B;
+    B := Nbanks;
+    IF B <= 0 THEN B := 32;
+    AwgSharedBank := Addr REM B
+END;
+
+INTEGER PROCEDURE AwgBankConflictModel(INTEGER VALUE N, Stride, Nbanks);
+BEGIN
+    COMMENT Estimate: if stride and nbanks are not coprime, conflicts.;
+    INTEGER B, S, Conflicts;
+    B := Nbanks; IF B <= 0 THEN B := 32;
+    S := Stride REM B;
+    IF S = 0 THEN Conflicts := N
+    ELSE Conflicts := 1;
+    AwgBankConflictModel := Conflicts
+END;
+
+COMMENT BLOCK 147-148 stats;
+INTEGER PROCEDURE AwgPeakBytes;
+BEGIN
+    AwgPeakBytes := AwgSpaceBytes(MemHost) + AwgSpaceBytes(MemDevice)
+                    + AwgSpaceBytes(MemShared)
+END;
+
+PROCEDURE AwgPoolStats(INTEGER RESULT HostU, DevU, SharedU, Status);
+BEGIN
+    HostU := AwgHostUsed; DevU := AwgDevUsed; SharedU := AwgSharedUsed;
+    Status := StOk
+END;
+
+COMMENT BLOCK 149 defragment — not implemented, not faked;
+PROCEDURE AwgDefrag(INTEGER RESULT Status);
+BEGIN
+    COMMENT Compacting live buffers would require updating every view.;
+    COMMENT Left unresolved rather than silently moving descriptors.;
+    Status := StUnimpl;
+    AwgSetStatus(StUnimpl, 149, 0)
+END;
+
+COMMENT BLOCK 150 memory tests;
+PROCEDURE AwgMemoryTest(INTEGER RESULT Status);
+BEGIN
+    INTEGER Bid, Bid2, S, Off, N;
+    REAL V;
+    IF AwgInitialized # 1 THEN AwgRuntimeInit(S);
+    AwgBufAlloc(MemHost, 8, KindReal, 1, Bid, Status);
+    IF Status # StOk THEN AwgTestFail := AwgTestFail + 1
+    ELSE
+    BEGIN
+        AwgFillReal(MemHost, AwgBufTab(Bid).Offset, 8, 3.0, Status);
+        V := AwgRLoad(MemHost, AwgBufTab(Bid).Offset + 3, Status);
+        IF (Status # StOk) OR (V # 3.0) THEN
+        BEGIN Status := StValidate; AwgTestFail := AwgTestFail + 1 END
+        ELSE
+        BEGIN
+            AwgH2D(AwgBufTab(Bid).Offset, 0, 8, Status);
+            AwgD2H(0, AwgBufTab(Bid).Offset, 8, Status);
+            V := AwgRLoad(MemHost, AwgBufTab(Bid).Offset, Status);
+            AwgBoundsCheck(MemHost, 8190, 8, S);
+            IF S # StBounds THEN Status := StValidate;
+            AwgPinHost(Bid, S);
+            IF S # StHwDep THEN Status := StValidate;
+            AwgPrefetch(Bid, S);
+            IF S # StHwDep THEN Status := StValidate;
+            IF (Status = StOk) AND (V = 3.0) THEN
+            BEGIN
+                AwgTestPass := AwgTestPass + 1;
+                Status := StOk
+            END
+            ELSE
+            BEGIN
+                AwgTestFail := AwgTestFail + 1;
+                IF Status = StOk THEN Status := StValidate
+            END
+        END
+    END;
+    AwgSetStatus(Status, 150, Bid)
+END;
