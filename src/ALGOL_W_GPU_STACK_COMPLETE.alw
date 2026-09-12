@@ -1,0 +1,16 @@
+COMMENT SOVEREIGN LEVIATHAN COVENANT - FRAGMENT BINDING;
+COMMENT Node-ID: AWG-FILE-ALGOL-W-GPU-STACK-COMPLETE;
+COMMENT Parent-Work: algol_w_gpu_stack;
+COMMENT Parent-Covenant: SL-AGPL3-001;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Source-Hash: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855;
+COMMENT Hash-Scope: source before generated license headers, UTF-8 LF;
+COMMENT Creation-Date: 2026-09-12 (provenance record);
+COMMENT Modification-Record: added license and node headers only;
+COMMENT Verification-Record: text preservation checked, compilation not verified;
+COMMENT Governed by GNU Affero General Public License version 3;
+COMMENT together with applicable Sovereign Leviathan additional terms;
+COMMENT AGPLv3 terms remain authoritative where additional terms do not validly apply;
+COMMENT See LICENSE and docs/PROVENANCE.md;

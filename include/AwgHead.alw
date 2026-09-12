@@ -1,3 +1,20 @@
+COMMENT SOVEREIGN LEVIATHAN COVENANT - FRAGMENT BINDING;
+COMMENT Node-ID: AWG-FILE-AwgHead;
+COMMENT Parent-Work: algol_w_gpu_stack;
+COMMENT Parent-Covenant: SL-AGPL3-001;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Source-Hash: sha256:a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316;
+COMMENT Hash-Scope: source before generated license headers, UTF-8 LF;
+COMMENT Creation-Date: 2026-09-12 (provenance record);
+COMMENT Modification-Record: added license and node headers only;
+COMMENT Verification-Record: text preservation checked, compilation not verified;
+COMMENT Governed by GNU Affero General Public License version 3;
+COMMENT together with applicable Sovereign Leviathan additional terms;
+COMMENT AGPLv3 terms remain authoritative where additional terms do not validly apply;
+COMMENT See LICENSE and docs/PROVENANCE.md;
+
 COMMENT ============================================================;
 COMMENT ALGOL W GPU Stack v1.0.0;
 COMMENT File: AwgHead.alw;
@@ -126,6 +143,13 @@ BEGIN COMMENT AwgGpuStack;
     COMMENT RECORD CLASSES;
     COMMENT ============================================================;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-008-1;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 008 error record;
     RECORD AwgErrorRec (
         INTEGER Code;
@@ -134,6 +158,13 @@ BEGIN COMMENT AwgGpuStack;
         STRING(48) Msg
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-010-2;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 010 configuration;
     RECORD AwgConfigRec (
         INTEGER HostCap;
@@ -150,6 +181,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Verify
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-017-3;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 017 dimensionality;
     RECORD AwgDim3Rec (
         INTEGER X;
@@ -157,6 +195,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Z
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-018-4;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 018 tensor descriptor;
     RECORD AwgTenRec (
         INTEGER Id;
@@ -176,6 +221,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER BufId
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-019-5;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 019 buffer descriptor;
     RECORD AwgBufRec (
         INTEGER Id;
@@ -193,6 +245,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Dim2
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-020-6;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 020 backend descriptor;
     RECORD AwgBeRec (
         INTEGER Kind;
@@ -208,6 +267,13 @@ BEGIN COMMENT AwgGpuStack;
         STRING(32) Name
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-021-7;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 021 capability descriptor;
     RECORD AwgCapRec (
         INTEGER RefExec;
@@ -222,6 +288,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER HwOccupancy
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-033-8;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 033 version;
     RECORD AwgVerRec (
         INTEGER Major;
@@ -230,6 +303,13 @@ BEGIN COMMENT AwgGpuStack;
         STRING(16) Tag
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-069-9;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 069 kernel argument;
     RECORD AwgArgRec (
         INTEGER Slot;
@@ -240,6 +320,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Length
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-072-10;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 072 kernel metadata;
     RECORD AwgKMetaRec (
         INTEGER Id;
@@ -254,6 +341,13 @@ BEGIN COMMENT AwgGpuStack;
         STRING(32) Name
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-073-11;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 073 launch descriptor;
     RECORD AwgLaunchRec (
         INTEGER KernelId;
@@ -266,6 +360,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Valid
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-076-12;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 076 execution context;
     RECORD AwgCtxRec (
         INTEGER ExecId;
@@ -281,6 +382,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Pc
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-155-13;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 155 opcode record;
     RECORD AwgOpRec (
         INTEGER Code;
@@ -294,6 +402,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Flags
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-156-14;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 156 operand record;
     RECORD AwgOperRec (
         INTEGER Kind;
@@ -303,6 +418,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Offset
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-065-15;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 065 barrier;
     RECORD AwgBarRec (
         INTEGER Id;
@@ -312,6 +434,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER State
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-362-16;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 362 fence;
     RECORD AwgFenceRec (
         INTEGER Id;
@@ -320,6 +449,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Waiters
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-357-17;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 357 queue command;
     RECORD AwgCmdRec (
         INTEGER Kind;
@@ -331,6 +467,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Status
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-417-18;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 417 graph node;
     RECORD AwgNodeRec (
         INTEGER Id;
@@ -344,6 +487,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Done
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-034-19;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 034 trace event;
     RECORD AwgTrRec (
         INTEGER Cycle;
@@ -353,6 +503,13 @@ BEGIN COMMENT AwgGpuStack;
         INTEGER Status
     );
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-AwgHead-BLK-451-20;
+COMMENT Parent-ID: AWG-FILE-AwgHead;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
     COMMENT BLOCK 451 test result;
     RECORD AwgTResRec (
         INTEGER BlockNo;

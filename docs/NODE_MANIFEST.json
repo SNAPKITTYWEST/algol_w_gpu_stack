@@ -1,0 +1,1917 @@
+[
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-008-1",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "008",
+    "component": "COMMENT BLOCK 008 error record;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-010-2",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "010",
+    "component": "COMMENT BLOCK 010 configuration;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-017-3",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "017",
+    "component": "COMMENT BLOCK 017 dimensionality;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-018-4",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "018",
+    "component": "COMMENT BLOCK 018 tensor descriptor;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-019-5",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "019",
+    "component": "COMMENT BLOCK 019 buffer descriptor;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-020-6",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "020",
+    "component": "COMMENT BLOCK 020 backend descriptor;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-021-7",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "021",
+    "component": "COMMENT BLOCK 021 capability descriptor;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-033-8",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "033",
+    "component": "COMMENT BLOCK 033 version;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-069-9",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "069",
+    "component": "COMMENT BLOCK 069 kernel argument;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-072-10",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "072",
+    "component": "COMMENT BLOCK 072 kernel metadata;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-073-11",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "073",
+    "component": "COMMENT BLOCK 073 launch descriptor;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-076-12",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "076",
+    "component": "COMMENT BLOCK 076 execution context;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-155-13",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "155",
+    "component": "COMMENT BLOCK 155 opcode record;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-156-14",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "156",
+    "component": "COMMENT BLOCK 156 operand record;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-065-15",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "065",
+    "component": "COMMENT BLOCK 065 barrier;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-362-16",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "362",
+    "component": "COMMENT BLOCK 362 fence;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-357-17",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "357",
+    "component": "COMMENT BLOCK 357 queue command;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-417-18",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "417",
+    "component": "COMMENT BLOCK 417 graph node;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-034-19",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "034",
+    "component": "COMMENT BLOCK 034 trace event;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead-BLK-451-20",
+    "parent_id": "AWG-FILE-AwgHead",
+    "file": "include/AwgHead.alw",
+    "block": "451",
+    "component": "COMMENT BLOCK 451 test result;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316"
+  },
+  {
+    "node_id": "AWG-FILE-AwgHead",
+    "parent_id": "algol_w_gpu_stack",
+    "file": "include/AwgHead.alw",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "a5dd84d7b9a1cb7201a454ad0b9a012c7c7c412a0e989487f9a6c2aa08fc2316",
+    "annotated_file_sha256": "207523fff6278ffb1e7d0ae270c10bc0191af3ed1dfb6be8bb6f29a1dcbdcb88"
+  },
+  {
+    "node_id": "AWG-FILE-000AwgConstants-BLK-007-1",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "007",
+    "component": "COMMENT BLOCK 007 / 009 / 033 — constant installer and limits;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-FILE-000AwgConstants-BLK-023-2",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "023",
+    "component": "COMMENT BLOCK 023;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-PROC-AwgSetStatus",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "023",
+    "component": "AwgSetStatus",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-FILE-000AwgConstants-BLK-034-4",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "034",
+    "component": "COMMENT BLOCK 034;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBumpCycle",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "034",
+    "component": "AwgBumpCycle",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-FILE-000AwgConstants-BLK-146-6",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "146",
+    "component": "COMMENT BLOCK 146;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBumpTraffic",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "146",
+    "component": "AwgBumpTraffic",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-FILE-000AwgConstants-BLK-175-8",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "175",
+    "component": "COMMENT BLOCK 175;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBumpOp",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "175",
+    "component": "AwgBumpOp",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-FILE-000AwgConstants-BLK-009-10",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "009",
+    "component": "COMMENT BLOCK 009;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-PROC-AwgInstallConstants",
+    "parent_id": "AWG-FILE-000AwgConstants",
+    "file": "src/000AwgConstants.alw",
+    "block": "009",
+    "component": "AwgInstallConstants",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750"
+  },
+  {
+    "node_id": "AWG-FILE-000AwgConstants",
+    "parent_id": "algol_w_gpu_stack",
+    "file": "src/000AwgConstants.alw",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750",
+    "annotated_file_sha256": "c0ea79661c637ab493870f4883736d47b1eb49d54d294b68e4f868e612190837"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-001-050-1",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "001-050",
+    "component": "COMMENT BLOCKS 001-050 — foundation and runtime substrate;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-042-2",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "042",
+    "component": "COMMENT BLOCK 042;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgAlignUp",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "042",
+    "component": "AwgAlignUp",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-043-4",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "043",
+    "component": "COMMENT BLOCK 043;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgSizeOfKind",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "043",
+    "component": "AwgSizeOfKind",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-044-6",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "044",
+    "component": "COMMENT BLOCK 044;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIMin",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "044",
+    "component": "AwgIMin",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIMax",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "044",
+    "component": "AwgIMax",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-045-9",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "045",
+    "component": "COMMENT BLOCK 045;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIClamp",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "045",
+    "component": "AwgIClamp",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRMin",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "045",
+    "component": "AwgRMin",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRMax",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "045",
+    "component": "AwgRMax",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRClamp",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "045",
+    "component": "AwgRClamp",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-046-14",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "COMMENT BLOCK 046;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIAnd",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "AwgIAnd",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIOr",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "AwgIOr",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIXor",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "AwgIXor",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgINot31",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "AwgINot31",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIShl",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "AwgIShl",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIShr",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "AwgIShr",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgPackBits",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "AwgPackBits",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgUnpackBits",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "046",
+    "component": "AwgUnpackBits",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-047-23",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "047",
+    "component": "COMMENT BLOCK 047;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgPopc",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "047",
+    "component": "AwgPopc",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgClz",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "047",
+    "component": "AwgClz",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBrev",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "047",
+    "component": "AwgBrev",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-048-27",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "048",
+    "component": "COMMENT BLOCK 048;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgComposeId",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "048",
+    "component": "AwgComposeId",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIdDevice",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "048",
+    "component": "AwgIdDevice",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIdLocal",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "048",
+    "component": "AwgIdLocal",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-037-31",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "037",
+    "component": "COMMENT BLOCK 037;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgAssert",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "037",
+    "component": "AwgAssert",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-011-016-33",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "011-016",
+    "component": "COMMENT BLOCK 011-016 identifier constructors;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgKernelId",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "011-016",
+    "component": "AwgKernelId",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgDeviceIdOf",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "011-016",
+    "component": "AwgDeviceIdOf",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgExecIdOf",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "011-016",
+    "component": "AwgExecIdOf",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMemoryIdOf",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "011-016",
+    "component": "AwgMemoryIdOf",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBlockIdOf",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "011-016",
+    "component": "AwgBlockIdOf",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgThreadIdOf",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "011-016",
+    "component": "AwgThreadIdOf",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-038-40",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "038",
+    "component": "COMMENT BLOCK 038 default configuration;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgDefaultConfig",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "038",
+    "component": "AwgDefaultConfig",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-033-42",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "033",
+    "component": "COMMENT BLOCK 033 version fill;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgFillVersion",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "033",
+    "component": "AwgFillVersion",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-021-44",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "021",
+    "component": "COMMENT BLOCK 021 capability fill — honest hardware flags;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgFillCaps",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "021",
+    "component": "AwgFillCaps",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-020-46",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "020",
+    "component": "COMMENT BLOCK 020 backend descriptor for the reference backend;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgFillRefBackend",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "020",
+    "component": "AwgFillRefBackend",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-032-48",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "032",
+    "component": "COMMENT BLOCK 032 name table;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgNameClear",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "032",
+    "component": "AwgNameClear",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgNameSet",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "032",
+    "component": "AwgNameSet",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-036-51",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "036",
+    "component": "COMMENT BLOCK 036 log buffer;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgLogClear",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "036",
+    "component": "AwgLogClear",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgLogPush",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "036",
+    "component": "AwgLogPush",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-029-031-54",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "029-031",
+    "component": "COMMENT BLOCK 029-031 handle allocator;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgHandleAlloc",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "029-031",
+    "component": "AwgHandleAlloc",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgHandleValidate",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "029-031",
+    "component": "AwgHandleValidate",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-049-57",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "049",
+    "component": "COMMENT BLOCK 049 single-owner token;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgTakeOwner",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "049",
+    "component": "AwgTakeOwner",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgDropOwner",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "049",
+    "component": "AwgDropOwner",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-027-60",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "027",
+    "component": "COMMENT BLOCK 027 state validation;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgStateValidate",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "027",
+    "component": "AwgStateValidate",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-028-62",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "028",
+    "component": "COMMENT BLOCK 028 invariant checking;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgInvariantCheck",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "028",
+    "component": "AwgInvariantCheck",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-039-041-64",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "039-041",
+    "component": "COMMENT BLOCK 039-041 exception flags (software);",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgClearFlags",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "039-041",
+    "component": "AwgClearFlags",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRaiseInt",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "039-041",
+    "component": "AwgRaiseInt",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRaiseFlt",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "039-041",
+    "component": "AwgRaiseFlt",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-049-68",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "049",
+    "component": "COMMENT BLOCK 049 zero descriptor helpers;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgZeroBuf",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "049",
+    "component": "AwgZeroBuf",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgZeroKernel",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "049",
+    "component": "AwgZeroKernel",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-035-71",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "035",
+    "component": "COMMENT BLOCK 035 trace;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgTracePush",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "035",
+    "component": "AwgTracePush",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-025-73",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "025",
+    "component": "COMMENT BLOCK 025 runtime initialization;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRuntimeInit",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "025",
+    "component": "AwgRuntimeInit",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-026-75",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "026",
+    "component": "COMMENT BLOCK 026 runtime shutdown;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRuntimeShutdown",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "026",
+    "component": "AwgRuntimeShutdown",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation-BLK-050-77",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "050",
+    "component": "COMMENT BLOCK 050 foundation self-test;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-PROC-AwgFoundationTest",
+    "parent_id": "AWG-FILE-001AwgFoundation",
+    "file": "src/001AwgFoundation.alw",
+    "block": "050",
+    "component": "AwgFoundationTest",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86"
+  },
+  {
+    "node_id": "AWG-FILE-001AwgFoundation",
+    "parent_id": "algol_w_gpu_stack",
+    "file": "src/001AwgFoundation.alw",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "6ce056f6c2747a0d584e5ceb3555ba44516a66b768098cc33db891f3b5efee86",
+    "annotated_file_sha256": "628c163195bf5ee8844e58e2a2dfd04709274f665bd8e01e6745949e28fa8481"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-101-150-1",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "101-150",
+    "component": "COMMENT BLOCKS 101-150 — abstract memory architecture;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgSpaceCap",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "101-150",
+    "component": "AwgSpaceCap",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgSpaceUsed",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "101-150",
+    "component": "AwgSpaceUsed",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgSpaceAddUsed",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "101-150",
+    "component": "AwgSpaceAddUsed",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-113-5",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "113",
+    "component": "COMMENT BLOCK 113 bounds checking;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBoundsCheck",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "113",
+    "component": "AwgBoundsCheck",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-106-7",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "106",
+    "component": "COMMENT BLOCK 106 register-like scalar state;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRegWriteI",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "106",
+    "component": "AwgRegWriteI",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRegWriteF",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "106",
+    "component": "AwgRegWriteF",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRegReadI",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "106",
+    "component": "AwgRegReadI",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRegReadF",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "106",
+    "component": "AwgRegReadF",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-114-118-12",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "114-118",
+    "component": "COMMENT BLOCK 114-118 addressing;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgAddrCalc",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "114-118",
+    "component": "AwgAddrCalc",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgLinearIndex",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "114-118",
+    "component": "AwgLinearIndex",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgNdIndex",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "114-118",
+    "component": "AwgNdIndex",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRowMajor",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "114-118",
+    "component": "AwgRowMajor",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgTiledAddr",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "114-118",
+    "component": "AwgTiledAddr",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-135-136-18",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "135-136",
+    "component": "COMMENT BLOCK 135-136 element size and pitch;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgElemSizeOf",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "135-136",
+    "component": "AwgElemSizeOf",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgPitchOf",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "135-136",
+    "component": "AwgPitchOf",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRLoad",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "135-136",
+    "component": "AwgRLoad",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRStore",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "135-136",
+    "component": "AwgRStore",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgILoad",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "135-136",
+    "component": "AwgILoad",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgIStore",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "135-136",
+    "component": "AwgIStore",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-128-25",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "128",
+    "component": "COMMENT BLOCK 128 alias detection;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgRangesAlias",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "128",
+    "component": "AwgRangesAlias",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-107-109-27",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "107-109",
+    "component": "COMMENT BLOCK 107-109 buffer allocation;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBufAlloc",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "107-109",
+    "component": "AwgBufAlloc",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-108-29",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "108",
+    "component": "COMMENT BLOCK 108 release;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBufRelease",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "108",
+    "component": "AwgBufRelease",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-109-31",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "109",
+    "component": "COMMENT BLOCK 109 descriptor fill;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBufDescFill",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "109",
+    "component": "AwgBufDescFill",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-126-127-33",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "126-127",
+    "component": "COMMENT BLOCK 126-127 ownership and lifetime;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgOwnershipCheck",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "126-127",
+    "component": "AwgOwnershipCheck",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-129-35",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "129",
+    "component": "COMMENT BLOCK 129 invalid-access detection;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgAccessCheck",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "129",
+    "component": "AwgAccessCheck",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-119-37",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "119",
+    "component": "COMMENT BLOCK 119 memory copy between spaces;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMemCopy",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "119",
+    "component": "AwgMemCopy",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMemCopyI",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "119",
+    "component": "AwgMemCopyI",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-120-40",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "120",
+    "component": "COMMENT BLOCK 120 host to device;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgH2D",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "120",
+    "component": "AwgH2D",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-121-42",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "121",
+    "component": "COMMENT BLOCK 121 device to host;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgD2H",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "121",
+    "component": "AwgD2H",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-122-44",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "122",
+    "component": "COMMENT BLOCK 122 device to device;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgD2D",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "122",
+    "component": "AwgD2D",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-123-124-46",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "123-124",
+    "component": "COMMENT BLOCK 123-124 init and clear;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMemClear",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "123-124",
+    "component": "AwgMemClear",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMemInit",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "123-124",
+    "component": "AwgMemInit",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgFillReal",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "123-124",
+    "component": "AwgFillReal",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgFillInt",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "123-124",
+    "component": "AwgFillInt",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-125-51",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "125",
+    "component": "COMMENT BLOCK 125 memory validation;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMemValidate",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "125",
+    "component": "AwgMemValidate",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-130-53",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "130",
+    "component": "COMMENT BLOCK 130 pin host — hardware dependent;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgPinHost",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "130",
+    "component": "AwgPinHost",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-131-132-55",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "131-132",
+    "component": "COMMENT BLOCK 131-132 map/unmap — software view only;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMapBuffer",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "131-132",
+    "component": "AwgMapBuffer",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgUnmapBuffer",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "131-132",
+    "component": "AwgUnmapBuffer",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-133-134-58",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "133-134",
+    "component": "COMMENT BLOCK 133-134 views and sub-buffers;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgView",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "133-134",
+    "component": "AwgView",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgSubBuffer",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "133-134",
+    "component": "AwgSubBuffer",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-137-138-61",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "137-138",
+    "component": "COMMENT BLOCK 137-138 pitched copies;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgCopy2D",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "137-138",
+    "component": "AwgCopy2D",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgCopy3D",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "137-138",
+    "component": "AwgCopy3D",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-141-64",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "141",
+    "component": "COMMENT BLOCK 141 software memory fence;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMemFenceSoft",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "141",
+    "component": "AwgMemFenceSoft",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-142-143-66",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "142-143",
+    "component": "COMMENT BLOCK 142-143 hardware prefetch and coherence;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgPrefetch",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "142-143",
+    "component": "AwgPrefetch",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgCoherence",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "142-143",
+    "component": "AwgCoherence",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-144-145-69",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "144-145",
+    "component": "COMMENT BLOCK 144-145 shared-memory bank model (software estimate);",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgSharedBank",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "144-145",
+    "component": "AwgSharedBank",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgBankConflictModel",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "144-145",
+    "component": "AwgBankConflictModel",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-147-148-72",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "147-148",
+    "component": "COMMENT BLOCK 147-148 stats;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgPeakBytes",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "147-148",
+    "component": "AwgPeakBytes",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgPoolStats",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "147-148",
+    "component": "AwgPoolStats",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-149-75",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "149",
+    "component": "COMMENT BLOCK 149 defragment — not implemented, not faked;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgDefrag",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "149",
+    "component": "AwgDefrag",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory-BLK-150-77",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "150",
+    "component": "COMMENT BLOCK 150 memory tests;",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-PROC-AwgMemoryTest",
+    "parent_id": "AWG-FILE-101AwgMemory",
+    "file": "src/101AwgMemory.alw",
+    "block": "150",
+    "component": "AwgMemoryTest",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32"
+  },
+  {
+    "node_id": "AWG-FILE-101AwgMemory",
+    "parent_id": "algol_w_gpu_stack",
+    "file": "src/101AwgMemory.alw",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32",
+    "annotated_file_sha256": "ce16f7ac3ba366322bfe1970f60c809e6d1bae101dafbbc3f4c934cd8c51d964"
+  },
+  {
+    "node_id": "AWG-FILE-ALGOL-W-GPU-STACK-COMPLETE",
+    "parent_id": "algol_w_gpu_stack",
+    "file": "src/ALGOL_W_GPU_STACK_COMPLETE.alw",
+    "license_id": "SL-AGPL3-001",
+    "covenant_version": "1.0",
+    "original_file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "annotated_file_sha256": "399957c0a42633e30134191fae516e0196589038445be96834b335fe7732aa7b"
+  }
+]

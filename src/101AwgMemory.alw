@@ -1,4 +1,28 @@
+COMMENT SOVEREIGN LEVIATHAN COVENANT - FRAGMENT BINDING;
+COMMENT Node-ID: AWG-FILE-101AwgMemory;
+COMMENT Parent-Work: algol_w_gpu_stack;
+COMMENT Parent-Covenant: SL-AGPL3-001;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Source-Hash: sha256:37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32;
+COMMENT Hash-Scope: source before generated license headers, UTF-8 LF;
+COMMENT Creation-Date: 2026-09-12 (provenance record);
+COMMENT Modification-Record: added license and node headers only;
+COMMENT Verification-Record: text preservation checked, compilation not verified;
+COMMENT Governed by GNU Affero General Public License version 3;
+COMMENT together with applicable Sovereign Leviathan additional terms;
+COMMENT AGPLv3 terms remain authoritative where additional terms do not validly apply;
+COMMENT See LICENSE and docs/PROVENANCE.md;
+
 COMMENT ============================================================;
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-101-150-1;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCKS 101-150 — abstract memory architecture;
 COMMENT Host/device/shared/local/constant are ALGOL W arrays.;
 COMMENT They implement the software memory model. They are not;
@@ -6,6 +30,20 @@ COMMENT GPU VRAM. A hardware backend must copy through the;
 COMMENT backend interface (BLOCKS 389-390) into real device memory.;
 COMMENT ============================================================;
 
+COMMENT BLOCK 101-150;
+COMMENT Component: AwgSpaceCap;
+COMMENT Purpose: AwgSpaceCap as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgSpaceCap;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgSpaceCap(INTEGER VALUE Space);
 BEGIN
     IF Space = MemHost THEN AwgSpaceCap := CapHost
@@ -17,6 +55,20 @@ BEGIN
     ELSE AwgSpaceCap := 0
 END;
 
+COMMENT BLOCK 101-150;
+COMMENT Component: AwgSpaceUsed;
+COMMENT Purpose: AwgSpaceUsed as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgSpaceUsed;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgSpaceUsed(INTEGER VALUE Space);
 BEGIN
     IF Space = MemHost THEN AwgSpaceUsed := AwgHostUsed
@@ -27,6 +79,20 @@ BEGIN
     ELSE AwgSpaceUsed := 0
 END;
 
+COMMENT BLOCK 101-150;
+COMMENT Component: AwgSpaceAddUsed;
+COMMENT Purpose: AwgSpaceAddUsed as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgSpaceAddUsed;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgSpaceAddUsed(INTEGER VALUE Space, N);
 BEGIN
     IF Space = MemHost THEN AwgHostUsed := AwgHostUsed + N
@@ -36,7 +102,28 @@ BEGIN
     ELSE IF Space = MemConstant THEN AwgConstUsed := AwgConstUsed + N
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-113-5;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 113 bounds checking;
+COMMENT BLOCK 113;
+COMMENT Component: AwgBoundsCheck;
+COMMENT Purpose: AwgBoundsCheck as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgBoundsCheck;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgBoundsCheck(INTEGER VALUE Space, Off, Len; INTEGER RESULT Status);
 BEGIN
     INTEGER Cap;
@@ -54,19 +141,68 @@ BEGIN
     ELSE Status := StOk
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-106-7;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 106 register-like scalar state;
+COMMENT BLOCK 106;
+COMMENT Component: AwgRegWriteI;
+COMMENT Purpose: AwgRegWriteI as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgRegWriteI;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgRegWriteI(INTEGER VALUE R, V; INTEGER RESULT Status);
 BEGIN
     IF (R < 0) OR (R >= CapIreg) THEN Status := StBounds
     ELSE BEGIN AwgIReg(R) := V; Status := StOk END
 END;
 
+COMMENT BLOCK 106;
+COMMENT Component: AwgRegWriteF;
+COMMENT Purpose: AwgRegWriteF as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgRegWriteF;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgRegWriteF(INTEGER VALUE R; REAL VALUE V; INTEGER RESULT Status);
 BEGIN
     IF (R < 0) OR (R >= CapFreg) THEN Status := StBounds
     ELSE BEGIN AwgFReg(R) := V; Status := StOk END
 END;
 
+COMMENT BLOCK 106;
+COMMENT Component: AwgRegReadI;
+COMMENT Purpose: AwgRegReadI as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgRegReadI;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgRegReadI(INTEGER VALUE R; INTEGER RESULT Status);
 BEGIN
     IF (R < 0) OR (R >= CapIreg) THEN
@@ -74,6 +210,20 @@ BEGIN
     ELSE BEGIN Status := StOk; AwgRegReadI := AwgIReg(R) END
 END;
 
+COMMENT BLOCK 106;
+COMMENT Component: AwgRegReadF;
+COMMENT Purpose: AwgRegReadF as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgRegReadF;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 REAL PROCEDURE AwgRegReadF(INTEGER VALUE R; INTEGER RESULT Status);
 BEGIN
     IF (R < 0) OR (R >= CapFreg) THEN
@@ -81,27 +231,104 @@ BEGIN
     ELSE BEGIN Status := StOk; AwgRegReadF := AwgFReg(R) END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-114-118-12;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 114-118 addressing;
+COMMENT BLOCK 114-118;
+COMMENT Component: AwgAddrCalc;
+COMMENT Purpose: AwgAddrCalc as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgAddrCalc;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgAddrCalc(INTEGER VALUE Base, Index, Stride, Offset);
 BEGIN
     AwgAddrCalc := Base + Index * Stride + Offset
 END;
 
+COMMENT BLOCK 114-118;
+COMMENT Component: AwgLinearIndex;
+COMMENT Purpose: AwgLinearIndex as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgLinearIndex;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgLinearIndex(INTEGER VALUE I, J, Ldm);
 BEGIN
     AwgLinearIndex := I * Ldm + J
 END;
 
+COMMENT BLOCK 114-118;
+COMMENT Component: AwgNdIndex;
+COMMENT Purpose: AwgNdIndex as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgNdIndex;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgNdIndex(INTEGER VALUE I0, I1, I2, S0, S1, S2);
 BEGIN
     AwgNdIndex := I0 * S0 + I1 * S1 + I2 * S2
 END;
 
+COMMENT BLOCK 114-118;
+COMMENT Component: AwgRowMajor;
+COMMENT Purpose: AwgRowMajor as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgRowMajor;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgRowMajor(INTEGER VALUE I, J, Cols);
 BEGIN
     AwgRowMajor := I * Cols + J
 END;
 
+COMMENT BLOCK 114-118;
+COMMENT Component: AwgTiledAddr;
+COMMENT Purpose: AwgTiledAddr as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgTiledAddr;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgTiledAddr(INTEGER VALUE I, J, Rows, Cols, Tm, Tn);
 BEGIN
     INTEGER Br, Bc, Tr, Tc, TilesN;
@@ -115,18 +342,67 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-135-136-18;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 135-136 element size and pitch;
+COMMENT BLOCK 135-136;
+COMMENT Component: AwgElemSizeOf;
+COMMENT Purpose: AwgElemSizeOf as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgElemSizeOf;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgElemSizeOf(INTEGER VALUE Kind);
 BEGIN
     AwgElemSizeOf := AwgSizeOfKind(Kind)
 END;
 
+COMMENT BLOCK 135-136;
+COMMENT Component: AwgPitchOf;
+COMMENT Purpose: AwgPitchOf as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgPitchOf;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgPitchOf(INTEGER VALUE Cols, Align);
 BEGIN
     AwgPitchOf := AwgAlignUp(Cols, Align)
 END;
 
 COMMENT real load/store with space dispatch — used by the whole stack;
+COMMENT BLOCK 135-136;
+COMMENT Component: AwgRLoad;
+COMMENT Purpose: AwgRLoad as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgRLoad;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 REAL PROCEDURE AwgRLoad(INTEGER VALUE Space, Off; INTEGER RESULT Status);
 BEGIN
     AwgBoundsCheck(Space, Off, 1, Status);
@@ -140,6 +416,20 @@ BEGIN
     ELSE BEGIN Status := StInvalid; AwgRLoad := 0.0 END
 END;
 
+COMMENT BLOCK 135-136;
+COMMENT Component: AwgRStore;
+COMMENT Purpose: AwgRStore as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgRStore;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgRStore(INTEGER VALUE Space, Off; REAL VALUE V; INTEGER RESULT Status);
 BEGIN
     AwgBoundsCheck(Space, Off, 1, Status);
@@ -156,6 +446,20 @@ BEGIN
     END
 END;
 
+COMMENT BLOCK 135-136;
+COMMENT Component: AwgILoad;
+COMMENT Purpose: AwgILoad as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgILoad;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgILoad(INTEGER VALUE Space, Off; INTEGER RESULT Status);
 BEGIN
     AwgBoundsCheck(Space, Off, 1, Status);
@@ -165,6 +469,20 @@ BEGIN
     ELSE BEGIN Status := StInvalid; AwgILoad := 0 END
 END;
 
+COMMENT BLOCK 135-136;
+COMMENT Component: AwgIStore;
+COMMENT Purpose: AwgIStore as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgIStore;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgIStore(INTEGER VALUE Space, Off; INTEGER VALUE V; INTEGER RESULT Status);
 BEGIN
     AwgBoundsCheck(Space, Off, 1, Status);
@@ -177,14 +495,56 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-128-25;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 128 alias detection;
+COMMENT BLOCK 128;
+COMMENT Component: AwgRangesAlias;
+COMMENT Purpose: AwgRangesAlias as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgRangesAlias;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 LOGICAL PROCEDURE AwgRangesAlias(INTEGER VALUE Aoff, Alen, Boff, Blen);
 BEGIN
     IF (Alen <= 0) OR (Blen <= 0) THEN AwgRangesAlias := FALSE
     ELSE AwgRangesAlias := (Aoff < Boff + Blen) AND (Boff < Aoff + Alen)
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-107-109-27;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 107-109 buffer allocation;
+COMMENT BLOCK 107-109;
+COMMENT Component: AwgBufAlloc;
+COMMENT Purpose: AwgBufAlloc as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgBufAlloc;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgBufAlloc(INTEGER VALUE Space, Length, Kind, Align;
                       INTEGER RESULT Bid, Status);
 BEGIN
@@ -225,7 +585,28 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-108-29;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 108 release;
+COMMENT BLOCK 108;
+COMMENT Component: AwgBufRelease;
+COMMENT Purpose: AwgBufRelease as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgBufRelease;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgBufRelease(INTEGER VALUE Bid; INTEGER RESULT Status);
 BEGIN
     AwgHandleValidate(Bid, CapBufs, Status);
@@ -241,7 +622,28 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-109-31;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 109 descriptor fill;
+COMMENT BLOCK 109;
+COMMENT Component: AwgBufDescFill;
+COMMENT Purpose: AwgBufDescFill as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgBufDescFill;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgBufDescFill(INTEGER VALUE Bid, Space, Off, Len, Stride, Kind;
                          INTEGER RESULT Status);
 BEGIN
@@ -255,7 +657,28 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-126-127-33;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 126-127 ownership and lifetime;
+COMMENT BLOCK 126-127;
+COMMENT Component: AwgOwnershipCheck;
+COMMENT Purpose: AwgOwnershipCheck as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgOwnershipCheck;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgOwnershipCheck(INTEGER VALUE Bid; INTEGER RESULT Status);
 BEGIN
     AwgHandleValidate(Bid, CapBufs, Status);
@@ -266,7 +689,28 @@ BEGIN
     ELSE Status := StOk
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-129-35;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 129 invalid-access detection;
+COMMENT BLOCK 129;
+COMMENT Component: AwgAccessCheck;
+COMMENT Purpose: AwgAccessCheck as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgAccessCheck;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgAccessCheck(INTEGER VALUE Bid, Index; INTEGER RESULT Status);
 BEGIN
     AwgOwnershipCheck(Bid, Status);
@@ -280,7 +724,28 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-119-37;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 119 memory copy between spaces;
+COMMENT BLOCK 119;
+COMMENT Component: AwgMemCopy;
+COMMENT Purpose: AwgMemCopy as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgMemCopy;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgMemCopy(INTEGER VALUE SrcSpace, SrcOff, DstSpace, DstOff, Len;
                      INTEGER RESULT Status);
 BEGIN
@@ -308,6 +773,20 @@ BEGIN
 END;
 
 COMMENT integer copy for index buffers;
+COMMENT BLOCK 119;
+COMMENT Component: AwgMemCopyI;
+COMMENT Purpose: AwgMemCopyI as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgMemCopyI;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgMemCopyI(INTEGER VALUE SrcSpace, SrcOff, DstSpace, DstOff, Len;
                       INTEGER RESULT Status);
 BEGIN
@@ -327,7 +806,28 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-120-40;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 120 host to device;
+COMMENT BLOCK 120;
+COMMENT Component: AwgH2D;
+COMMENT Purpose: AwgH2D as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgH2D;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgH2D(INTEGER VALUE SrcOff, DstOff, Len; INTEGER RESULT Status);
 BEGIN
     COMMENT Software copy HostR -> DevR. This is NOT a PCIe DMA.;
@@ -335,19 +835,82 @@ BEGIN
     AwgMemCopy(MemHost, SrcOff, MemDevice, DstOff, Len, Status)
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-121-42;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 121 device to host;
+COMMENT BLOCK 121;
+COMMENT Component: AwgD2H;
+COMMENT Purpose: AwgD2H as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgD2H;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgD2H(INTEGER VALUE SrcOff, DstOff, Len; INTEGER RESULT Status);
 BEGIN
     AwgMemCopy(MemDevice, SrcOff, MemHost, DstOff, Len, Status)
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-122-44;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 122 device to device;
+COMMENT BLOCK 122;
+COMMENT Component: AwgD2D;
+COMMENT Purpose: AwgD2D as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgD2D;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgD2D(INTEGER VALUE SrcOff, DstOff, Len; INTEGER RESULT Status);
 BEGIN
     AwgMemCopy(MemDevice, SrcOff, MemDevice, DstOff, Len, Status)
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-123-124-46;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 123-124 init and clear;
+COMMENT BLOCK 123-124;
+COMMENT Component: AwgMemClear;
+COMMENT Purpose: AwgMemClear as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgMemClear;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgMemClear(INTEGER VALUE Space, Off, Len; INTEGER RESULT Status);
 BEGIN
     INTEGER N;
@@ -357,6 +920,20 @@ BEGIN
             AwgRStore(Space, Off + N, 0.0, Status)
 END;
 
+COMMENT BLOCK 123-124;
+COMMENT Component: AwgMemInit;
+COMMENT Purpose: AwgMemInit as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgMemInit;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgMemInit(INTEGER VALUE Space, Off, Len; REAL VALUE V;
                      INTEGER RESULT Status);
 BEGIN
@@ -367,12 +944,40 @@ BEGIN
             AwgRStore(Space, Off + N, V, Status)
 END;
 
+COMMENT BLOCK 123-124;
+COMMENT Component: AwgFillReal;
+COMMENT Purpose: AwgFillReal as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgFillReal;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgFillReal(INTEGER VALUE Space, Off, Len; REAL VALUE V;
                       INTEGER RESULT Status);
 BEGIN
     AwgMemInit(Space, Off, Len, V, Status)
 END;
 
+COMMENT BLOCK 123-124;
+COMMENT Component: AwgFillInt;
+COMMENT Purpose: AwgFillInt as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgFillInt;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgFillInt(INTEGER VALUE Space, Off, Len; INTEGER VALUE V;
                      INTEGER RESULT Status);
 BEGIN
@@ -383,7 +988,28 @@ BEGIN
             AwgIStore(Space, Off + N, V, Status)
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-125-51;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 125 memory validation;
+COMMENT BLOCK 125;
+COMMENT Component: AwgMemValidate;
+COMMENT Purpose: AwgMemValidate as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgMemValidate;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgMemValidate(INTEGER RESULT Status);
 BEGIN
     INTEGER N, Bad;
@@ -404,7 +1030,28 @@ BEGIN
     ELSE Status := StOk
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-130-53;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 130 pin host — hardware dependent;
+COMMENT BLOCK 130;
+COMMENT Component: AwgPinHost;
+COMMENT Purpose: AwgPinHost as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgPinHost;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgPinHost(INTEGER VALUE Bid; INTEGER RESULT Status);
 BEGIN
     COMMENT Page-locked host memory requires OS/GPU driver support.;
@@ -416,7 +1063,28 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-131-132-55;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 131-132 map/unmap — software view only;
+COMMENT BLOCK 131-132;
+COMMENT Component: AwgMapBuffer;
+COMMENT Purpose: AwgMapBuffer as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgMapBuffer;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgMapBuffer(INTEGER VALUE Bid; INTEGER RESULT Off, Status);
 BEGIN
     AwgOwnershipCheck(Bid, Status);
@@ -432,13 +1100,48 @@ BEGIN
     ELSE Off := -1
 END;
 
+COMMENT BLOCK 131-132;
+COMMENT Component: AwgUnmapBuffer;
+COMMENT Purpose: AwgUnmapBuffer as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgUnmapBuffer;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgUnmapBuffer(INTEGER VALUE Bid; INTEGER RESULT Status);
 BEGIN
     AwgOwnershipCheck(Bid, Status);
     IF Status = StOk THEN AwgBufTab(Bid).State := BufAlloc
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-133-134-58;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 133-134 views and sub-buffers;
+COMMENT BLOCK 133-134;
+COMMENT Component: AwgView;
+COMMENT Purpose: AwgView as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgView;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgView(INTEGER VALUE Bid, Off, Len; INTEGER RESULT VBid, Status);
 BEGIN
     INTEGER Space, Kind, Base;
@@ -467,12 +1170,47 @@ BEGIN
     END
 END;
 
+COMMENT BLOCK 133-134;
+COMMENT Component: AwgSubBuffer;
+COMMENT Purpose: AwgSubBuffer as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgSubBuffer;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgSubBuffer(INTEGER VALUE Bid, Off, Len; INTEGER RESULT VBid, Status);
 BEGIN
     AwgView(Bid, Off, Len, VBid, Status)
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-137-138-61;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 137-138 pitched copies;
+COMMENT BLOCK 137-138;
+COMMENT Component: AwgCopy2D;
+COMMENT Purpose: AwgCopy2D as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgCopy2D;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgCopy2D(INTEGER VALUE SrcSpace, SrcOff, SrcPitch,
                            DstSpace, DstOff, DstPitch,
                            Width, Height; INTEGER RESULT Status);
@@ -487,6 +1225,20 @@ BEGIN
     END
 END;
 
+COMMENT BLOCK 137-138;
+COMMENT Component: AwgCopy3D;
+COMMENT Purpose: AwgCopy3D as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgCopy3D;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgCopy3D(INTEGER VALUE SrcSpace, SrcOff, SrcP, SrcD,
                            DstSpace, DstOff, DstP, DstD,
                            Width, Height, Depth; INTEGER RESULT Status);
@@ -502,7 +1254,28 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-141-64;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 141 software memory fence;
+COMMENT BLOCK 141;
+COMMENT Component: AwgMemFenceSoft;
+COMMENT Purpose: AwgMemFenceSoft as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgMemFenceSoft;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgMemFenceSoft(INTEGER RESULT Status);
 BEGIN
     COMMENT ALGOL W evaluation is sequential; this is a no-op fence;
@@ -511,7 +1284,28 @@ BEGIN
     Status := StOk
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-142-143-66;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 142-143 hardware prefetch and coherence;
+COMMENT BLOCK 142-143;
+COMMENT Component: AwgPrefetch;
+COMMENT Purpose: AwgPrefetch as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgPrefetch;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgPrefetch(INTEGER VALUE Bid; INTEGER RESULT Status);
 BEGIN
     AwgOwnershipCheck(Bid, Status);
@@ -519,6 +1313,20 @@ BEGIN
     BEGIN Status := StHwDep; AwgSetStatus(StHwDep, 142, Bid) END
 END;
 
+COMMENT BLOCK 142-143;
+COMMENT Component: AwgCoherence;
+COMMENT Purpose: AwgCoherence as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgCoherence;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgCoherence(INTEGER RESULT Status);
 BEGIN
     COMMENT Cache coherence protocol is hardware.;
@@ -526,7 +1334,28 @@ BEGIN
     AwgSetStatus(StHwDep, 143, 0)
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-144-145-69;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 144-145 shared-memory bank model (software estimate);
+COMMENT BLOCK 144-145;
+COMMENT Component: AwgSharedBank;
+COMMENT Purpose: AwgSharedBank as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgSharedBank;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgSharedBank(INTEGER VALUE Addr, Nbanks);
 BEGIN
     INTEGER B;
@@ -535,6 +1364,20 @@ BEGIN
     AwgSharedBank := Addr REM B
 END;
 
+COMMENT BLOCK 144-145;
+COMMENT Component: AwgBankConflictModel;
+COMMENT Purpose: AwgBankConflictModel as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgBankConflictModel;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgBankConflictModel(INTEGER VALUE N, Stride, Nbanks);
 BEGIN
     COMMENT Estimate: if stride and nbanks are not coprime, conflicts.;
@@ -546,20 +1389,76 @@ BEGIN
     AwgBankConflictModel := Conflicts
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-147-148-72;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 147-148 stats;
+COMMENT BLOCK 147-148;
+COMMENT Component: AwgPeakBytes;
+COMMENT Purpose: AwgPeakBytes as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgPeakBytes;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgPeakBytes;
 BEGIN
     AwgPeakBytes := AwgSpaceBytes(MemHost) + AwgSpaceBytes(MemDevice)
                     + AwgSpaceBytes(MemShared)
 END;
 
+COMMENT BLOCK 147-148;
+COMMENT Component: AwgPoolStats;
+COMMENT Purpose: AwgPoolStats as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgPoolStats;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgPoolStats(INTEGER RESULT HostU, DevU, SharedU, Status);
 BEGIN
     HostU := AwgHostUsed; DevU := AwgDevUsed; SharedU := AwgSharedUsed;
     Status := StOk
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-149-75;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 149 defragment — not implemented, not faked;
+COMMENT BLOCK 149;
+COMMENT Component: AwgDefrag;
+COMMENT Purpose: AwgDefrag as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgDefrag;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgDefrag(INTEGER RESULT Status);
 BEGIN
     COMMENT Compacting live buffers would require updating every view.;
@@ -568,7 +1467,28 @@ BEGIN
     AwgSetStatus(StUnimpl, 149, 0)
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-101AwgMemory-BLK-150-77;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 150 memory tests;
+COMMENT BLOCK 150;
+COMMENT Component: AwgMemoryTest;
+COMMENT Purpose: AwgMemoryTest as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgMemoryTest;
+COMMENT Parent-ID: AWG-FILE-101AwgMemory;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgMemoryTest(INTEGER RESULT Status);
 BEGIN
     INTEGER Bid, Bid2, S, Off, N;

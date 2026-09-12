@@ -13,11 +13,12 @@ first, intact copy. Foundation and constant-installation procedures pasted into
 the second copy of `AwgDefrag` were extracted into their own fragments.
 
 The supplied language contract is in `LANGUAGE_AND_MODULE_CONTRACT.md`.
-Some supplied procedures lack the full comment header required by that contract;
-this import does not claim full contract compliance.
+The original import contained incomplete procedure comment headers. The later
+licensing pass added per-procedure metadata and node notices. Native language
+and runtime compliance remain unverified.
 
 `src/AwgBody.alw` was not supplied and is absent. The existing
-`src/ALGOL_W_GPU_STACK_COMPLETE.alw` remains an empty placeholder. These files
+`src/ALGOL_W_GPU_STACK_COMPLETE.alw` now carries a license header but remains a placeholder. These files
 are not a complete 500-block program. No native compiler or runtime validation
 has been performed. The included self-test procedures have not been executed.
 Hardware-dependent operations and unimplemented defragmentation retain their

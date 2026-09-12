@@ -1,8 +1,39 @@
+COMMENT SOVEREIGN LEVIATHAN COVENANT - FRAGMENT BINDING;
+COMMENT Node-ID: AWG-FILE-000AwgConstants;
+COMMENT Parent-Work: algol_w_gpu_stack;
+COMMENT Parent-Covenant: SL-AGPL3-001;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Source-Hash: sha256:ec49a820fa56ef48de61717bb2b021b5566958305e8035c227a6616ff9b71750;
+COMMENT Hash-Scope: source before generated license headers, UTF-8 LF;
+COMMENT Creation-Date: 2026-09-12 (provenance record);
+COMMENT Modification-Record: added license and node headers only;
+COMMENT Verification-Record: text preservation checked, compilation not verified;
+COMMENT Governed by GNU Affero General Public License version 3;
+COMMENT together with applicable Sovereign Leviathan additional terms;
+COMMENT AGPLv3 terms remain authoritative where additional terms do not validly apply;
+COMMENT See LICENSE and docs/PROVENANCE.md;
+
 COMMENT ============================================================;
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-000AwgConstants-BLK-007-1;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 007 / 009 / 033 — constant installer and limits;
 COMMENT Must be the first procedure. Called by AwgRuntimeInit.;
 COMMENT ============================================================;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-000AwgConstants-BLK-023-2;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 023;
 COMMENT Component: AwgSetStatus;
 COMMENT Purpose: record last status and error payload;
@@ -10,6 +41,20 @@ COMMENT Inputs: Code, BlockNo, Info;
 COMMENT Outputs: AwgLastStatus, AwgErr*;
 COMMENT Dependencies: error globals;
 COMMENT Hardware: none;
+COMMENT BLOCK 023;
+COMMENT Component: AwgSetStatus;
+COMMENT Purpose: AwgSetStatus as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgSetStatus;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgSetStatus(INTEGER VALUE Code, BlockNo, Info);
 BEGIN
     AwgLastStatus := Code;
@@ -24,25 +69,88 @@ BEGIN
     END
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-000AwgConstants-BLK-034-4;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 034;
 COMMENT Component: AwgBumpCycle;
 COMMENT Purpose: software cycle counter, not a hardware clock;
+COMMENT BLOCK 034;
+COMMENT Component: AwgBumpCycle;
+COMMENT Purpose: AwgBumpCycle as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgBumpCycle;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgBumpCycle;
 BEGIN
     AwgCycle := AwgCycle + 1
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-000AwgConstants-BLK-146-6;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 146;
 COMMENT Component: AwgBumpTraffic;
 COMMENT Purpose: count words moved through the software memory model;
+COMMENT BLOCK 146;
+COMMENT Component: AwgBumpTraffic;
+COMMENT Purpose: AwgBumpTraffic as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgBumpTraffic;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgBumpTraffic(INTEGER VALUE N);
 BEGIN
     AwgMemTraffic := AwgMemTraffic + N
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-000AwgConstants-BLK-175-8;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 175;
 COMMENT Component: AwgBumpOp;
 COMMENT Purpose: instruction issue counter for diagnostics;
+COMMENT BLOCK 175;
+COMMENT Component: AwgBumpOp;
+COMMENT Purpose: AwgBumpOp as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgBumpOp;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgBumpOp(INTEGER VALUE Code);
 BEGIN
     AwgOpIssued := AwgOpIssued + 1;
@@ -50,6 +158,13 @@ BEGIN
         AwgOpHist(Code) := AwgOpHist(Code) + 1
 END;
 
+COMMENT SOVEREIGN NODE KEY: AWG-FILE-000AwgConstants-BLK-009-10;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 COMMENT BLOCK 009;
 COMMENT Component: AwgInstallConstants;
 COMMENT Purpose: bind every global code, limit, and opcode id;
@@ -57,6 +172,20 @@ COMMENT Inputs: none;
 COMMENT Outputs: all status/space/opcode globals;
 COMMENT Dependencies: AwgHead declarations;
 COMMENT Hardware: none;
+COMMENT BLOCK 009;
+COMMENT Component: AwgInstallConstants;
+COMMENT Purpose: AwgInstallConstants as defined by the following supplied procedure;
+COMMENT Inputs: VALUE parameters and referenced global state;
+COMMENT Outputs: function result, RESULT parameters and stated global mutations;
+COMMENT Dependencies: AwgHead declarations and referenced Awg helpers;
+COMMENT Hardware: none (reference software or explicit unavailable status);
+COMMENT SOVEREIGN NODE KEY: AWG-PROC-AwgInstallConstants;
+COMMENT Parent-ID: AWG-FILE-000AwgConstants;
+COMMENT License-ID: SL-AGPL3-001 / MGPLv3;
+COMMENT Covenant-Version: 1.0;
+COMMENT Copyright: 2026 SNAPKITTYWEST;
+COMMENT License-Location: LICENSE;
+COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgInstallConstants;
 BEGIN
     KindNone := 0; KindInt := 1; KindReal := 2;
