@@ -1,0 +1,40 @@
+<!-- License-ID: SL-AGPL3-001 / MGPLv3; Copyright: 2026 SNAPKITTYWEST; see ../../LICENSE. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">ALGOL W GPU Stack retro terminal banner</title>
+  <desc id="desc">A violet and cyan wireframe landscape behind a vintage terminal showing ALGOL W memory blocks.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#08051f"/>
+      <stop offset="0.62" stop-color="#24105a"/>
+      <stop offset="1" stop-color="#f72585"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#fff06a"/>
+      <stop offset="1" stop-color="#ff4da6"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="sunclip"><circle cx="945" cy="167" r="102"/></clipPath>
+  </defs>
+  <rect width="1200" height="420" rx="24" fill="url(#sky)"/>
+  <g clip-path="url(#sunclip)">
+    <circle cx="945" cy="167" r="102" fill="url(#sun)" filter="url(#glow)"/>
+    <g stroke="#601258" stroke-width="8">
+      <path d="M825 120h240M825 145h240M825 172h240M825 202h240M825 235h240"/>
+    </g>
+  </g>
+  <path d="M0 316L220 215l130 92 148-142 168 146 122-89 152 94 135-110 145 102v112H0z" fill="#10072d" stroke="#15f4ee" stroke-width="4"/>
+  <g stroke="#9d4edd" stroke-width="2" opacity=".72">
+    <path d="M0 337h1200M0 364h1200M0 392h1200"/>
+    <path d="M600 315L492 420M600 315L554 420M600 315L646 420M600 315L708 420M600 315L800 420M600 315L400 420M600 315L250 420M600 315L950 420"/>
+  </g>
+  <rect x="60" y="58" width="690" height="246" rx="16" fill="#050613" stroke="#15f4ee" stroke-width="4"/>
+  <circle cx="91" cy="83" r="7" fill="#ff4da6"/><circle cx="114" cy="83" r="7" fill="#fff06a"/><circle cx="137" cy="83" r="7" fill="#15f4ee"/>
+  <g font-family="Consolas, 'Courier New', monospace" fill="#c8fff4">
+    <text x="90" y="132" font-size="44" font-weight="700">ALGOL W GPU STACK</text>
+    <text x="92" y="172" font-size="21" fill="#ff70c8">REFERENCE RUNTIME // MEMORY MODEL</text>
+    <text x="92" y="216" font-size="22">HOST  [████████]  DEVICE [████████]</text>
+    <text x="92" y="251" font-size="22" fill="#15f4ee">BLOCKS 001–050  •  101–150</text>
+    <text x="92" y="280" font-size="17" fill="#fff06a">SOFTWARE SEMANTICS • HARDWARE CLAIMS DISABLED</text>
+  </g>
+  <text x="933" y="358" text-anchor="middle" font-family="Consolas, monospace" font-size="18" fill="#ffffff">SL-AGPL3-001 // 2026</text>
+</svg>

@@ -31,3 +31,11 @@ header coverage, manifest hashes, license blob identity, and Git whitespace chec
 Native compilation, runtime tests and hardware execution were not performed.
 No clone gate or automatic license-enforcement system is implemented by these
 notices. No signature or legal-enforceability verification is claimed.
+
+Production-hardening update: memory bounds arithmetic now avoids direct
+`Off + Len` overflow; allocation validates spaces and element kinds; zero-length
+and exact self-copies terminate without entering a loop; register bounds failures
+record global status; and pitched copies validate dimensions, pitch, and enclosing
+pool bounds. `tests/source_invariants.mjs` checks these source-level guarantees.
+This remains static source verification until a compatible ALGOL W compiler and
+runtime execute the procedures.

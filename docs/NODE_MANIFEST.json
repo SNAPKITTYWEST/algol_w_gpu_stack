@@ -1903,7 +1903,7 @@
     "license_id": "SL-AGPL3-001",
     "covenant_version": "1.0",
     "original_file_sha256": "37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32",
-    "annotated_file_sha256": "ce16f7ac3ba366322bfe1970f60c809e6d1bae101dafbbc3f4c934cd8c51d964"
+    "annotated_file_sha256": "902adb8e55602ba055865133de0df12de44c6ce6f248669c226fb6cdaf22db2c"
   },
   {
     "node_id": "AWG-FILE-ALGOL-W-GPU-STACK-COMPLETE",

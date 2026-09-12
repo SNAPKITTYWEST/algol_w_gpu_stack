@@ -8,8 +8,8 @@ COMMENT Covenant-Version: 1.0;
 COMMENT Source-Hash: sha256:37168495677539c37332685adece6b4668fc6c6f40a7ef04592ecb4587b3fb32;
 COMMENT Hash-Scope: source before generated license headers, UTF-8 LF;
 COMMENT Creation-Date: 2026-09-12 (provenance record);
-COMMENT Modification-Record: added license and node headers only;
-COMMENT Verification-Record: text preservation checked, compilation not verified;
+COMMENT Modification-Record: licensed and hardened memory edge cases;
+COMMENT Verification-Record: source invariants checked, compilation not verified;
 COMMENT Governed by GNU Affero General Public License version 3;
 COMMENT together with applicable Sovereign Leviathan additional terms;
 COMMENT AGPLv3 terms remain authoritative where additional terms do not validly apply;
@@ -133,7 +133,7 @@ BEGIN
         Status := StInvalid;
         AwgSetStatus(StInvalid, 113, Space)
     END
-    ELSE IF (Off < 0) OR (Len < 0) OR (Off + Len > Cap) THEN
+    ELSE IF (Off < 0) OR (Len < 0) OR (Off > Cap) OR (Len > Cap - Off) THEN
     BEGIN
         Status := StBounds;
         AwgSetStatus(StBounds, 113, Off)
@@ -165,7 +165,8 @@ COMMENT License-Location: LICENSE;
 COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgRegWriteI(INTEGER VALUE R, V; INTEGER RESULT Status);
 BEGIN
-    IF (R < 0) OR (R >= CapIreg) THEN Status := StBounds
+    IF (R < 0) OR (R >= CapIreg) THEN
+    BEGIN Status := StBounds; AwgSetStatus(StBounds, 106, R) END
     ELSE BEGIN AwgIReg(R) := V; Status := StOk END
 END;
 
@@ -185,7 +186,8 @@ COMMENT License-Location: LICENSE;
 COMMENT Provenance: docs/NODE_MANIFEST.json;
 PROCEDURE AwgRegWriteF(INTEGER VALUE R; REAL VALUE V; INTEGER RESULT Status);
 BEGIN
-    IF (R < 0) OR (R >= CapFreg) THEN Status := StBounds
+    IF (R < 0) OR (R >= CapFreg) THEN
+    BEGIN Status := StBounds; AwgSetStatus(StBounds, 106, R) END
     ELSE BEGIN AwgFReg(R) := V; Status := StOk END
 END;
 
@@ -206,7 +208,7 @@ COMMENT Provenance: docs/NODE_MANIFEST.json;
 INTEGER PROCEDURE AwgRegReadI(INTEGER VALUE R; INTEGER RESULT Status);
 BEGIN
     IF (R < 0) OR (R >= CapIreg) THEN
-    BEGIN Status := StBounds; AwgRegReadI := 0 END
+    BEGIN Status := StBounds; AwgSetStatus(StBounds, 106, R); AwgRegReadI := 0 END
     ELSE BEGIN Status := StOk; AwgRegReadI := AwgIReg(R) END
 END;
 
@@ -227,7 +229,7 @@ COMMENT Provenance: docs/NODE_MANIFEST.json;
 REAL PROCEDURE AwgRegReadF(INTEGER VALUE R; INTEGER RESULT Status);
 BEGIN
     IF (R < 0) OR (R >= CapFreg) THEN
-    BEGIN Status := StBounds; AwgRegReadF := 0.0 END
+    BEGIN Status := StBounds; AwgSetStatus(StBounds, 106, R); AwgRegReadF := 0.0 END
     ELSE BEGIN Status := StOk; AwgRegReadF := AwgFReg(R) END
 END;
 
@@ -552,6 +554,10 @@ BEGIN
     Bid := -1;
     IF AwgInitialized # 1 THEN
     BEGIN Status := StNotInit; AwgSetStatus(StNotInit, 107, 0) END
+    ELSE IF AwgSpaceCap(Space) <= 0 THEN
+    BEGIN Status := StInvalid; AwgSetStatus(StInvalid, 107, Space) END
+    ELSE IF AwgSizeOfKind(Kind) <= 0 THEN
+    BEGIN Status := StInvalid; AwgSetStatus(StInvalid, 107, Kind) END
     ELSE IF Length < 0 THEN
     BEGIN Status := StInvalid; AwgSetStatus(StInvalid, 107, Length) END
     ELSE
@@ -561,7 +567,8 @@ BEGIN
         Cap := AwgSpaceCap(Space);
         Used := AwgSpaceUsed(Space);
         Off := AwgAlignUp(Used, A);
-        IF Off + Length > Cap THEN
+        IF (Used < 0) OR (Used > Cap) OR (Off < Used) OR
+           (Off > Cap) OR (Length > Cap - Off) THEN
         BEGIN
             Status := StOom;
             AwgSetStatus(StOom, 107, Length)
@@ -756,6 +763,8 @@ BEGIN
     IF Status = StOk THEN AwgBoundsCheck(DstSpace, DstOff, Len, Status);
     IF Status # StOk THEN
         Status := Status
+    ELSE IF Len = 0 THEN Status := StOk
+    ELSE IF (SrcSpace = DstSpace) AND (SrcOff = DstOff) THEN Status := StOk
     ELSE IF (SrcSpace = DstSpace) AND AwgRangesAlias(SrcOff, Len, DstOff, Len) THEN
     BEGIN
         Status := StAlias;
@@ -795,7 +804,11 @@ BEGIN
     IF Status = StOk THEN AwgBoundsCheck(DstSpace, DstOff, Len, Status);
     IF Status = StOk THEN
     BEGIN
-        IF (SrcSpace # MemHost) AND (SrcSpace # MemDevice) THEN Status := StInvalid
+        IF Len = 0 THEN Status := StOk
+        ELSE IF (SrcSpace = DstSpace) AND (SrcOff = DstOff) THEN Status := StOk
+        ELSE IF (SrcSpace = DstSpace) AND AwgRangesAlias(SrcOff, Len, DstOff, Len) THEN
+        BEGIN Status := StAlias; AwgSetStatus(StAlias, 119, SrcOff) END
+        ELSE IF (SrcSpace # MemHost) AND (SrcSpace # MemDevice) THEN Status := StInvalid
         ELSE IF (DstSpace # MemHost) AND (DstSpace # MemDevice) THEN Status := StInvalid
         ELSE
         FOR N := 0 STEP 1 UNTIL Len - 1 DO
@@ -1215,13 +1228,28 @@ PROCEDURE AwgCopy2D(INTEGER VALUE SrcSpace, SrcOff, SrcPitch,
                            DstSpace, DstOff, DstPitch,
                            Width, Height; INTEGER RESULT Status);
 BEGIN
-    INTEGER R;
-    Status := StOk;
-    FOR R := 0 STEP 1 UNTIL Height - 1 DO
+    INTEGER R, CapS, CapD;
+    CapS := AwgSpaceCap(SrcSpace);
+    CapD := AwgSpaceCap(DstSpace);
+    IF (Width < 0) OR (Height < 0) OR (SrcPitch < Width) OR
+       (DstPitch < Width) OR (CapS <= 0) OR (CapD <= 0) OR
+       (SrcOff < 0) OR (DstOff < 0) THEN
+    BEGIN Status := StInvalid; AwgSetStatus(StInvalid, 137, Width) END
+    ELSE IF (Width = 0) OR (Height = 0) THEN Status := StOk
+    ELSE IF (SrcOff > CapS) OR (Width > CapS - SrcOff) OR
+            (DstOff > CapD) OR (Width > CapD - DstOff) OR
+            ((Height - 1) > (CapS - SrcOff - Width) DIV SrcPitch) OR
+            ((Height - 1) > (CapD - DstOff - Width) DIV DstPitch) THEN
+    BEGIN Status := StBounds; AwgSetStatus(StBounds, 137, Height) END
+    ELSE
     BEGIN
-        AwgMemCopy(SrcSpace, SrcOff + R * SrcPitch,
-                   DstSpace, DstOff + R * DstPitch, Width, Status);
-        IF Status # StOk THEN R := Height
+        Status := StOk;
+        FOR R := 0 STEP 1 UNTIL Height - 1 DO
+        BEGIN
+            AwgMemCopy(SrcSpace, SrcOff + R * SrcPitch,
+                       DstSpace, DstOff + R * DstPitch, Width, Status);
+            IF Status # StOk THEN R := Height
+        END
     END
 END;
 
@@ -1243,14 +1271,39 @@ PROCEDURE AwgCopy3D(INTEGER VALUE SrcSpace, SrcOff, SrcP, SrcD,
                            DstSpace, DstOff, DstP, DstD,
                            Width, Height, Depth; INTEGER RESULT Status);
 BEGIN
-    INTEGER Z;
-    Status := StOk;
-    FOR Z := 0 STEP 1 UNTIL Depth - 1 DO
+    INTEGER Z, CapS, CapD, PlaneS, PlaneD;
+    CapS := AwgSpaceCap(SrcSpace);
+    CapD := AwgSpaceCap(DstSpace);
+    IF (Width < 0) OR (Height < 0) OR (Depth < 0) OR
+       (SrcP < Width) OR (DstP < Width) OR
+       (CapS <= 0) OR (CapD <= 0) OR (SrcOff < 0) OR (DstOff < 0) THEN
+    BEGIN Status := StInvalid; AwgSetStatus(StInvalid, 138, Depth) END
+    ELSE IF (Width = 0) OR (Height = 0) OR (Depth = 0) THEN Status := StOk
+    ELSE IF ((Height - 1) > (MaxInt - Width) DIV SrcP) OR
+            ((Height - 1) > (MaxInt - Width) DIV DstP) THEN
+    BEGIN Status := StOverflow; AwgSetStatus(StOverflow, 138, Height) END
+    ELSE
     BEGIN
-        AwgCopy2D(SrcSpace, SrcOff + Z * SrcD, SrcP,
-                  DstSpace, DstOff + Z * DstD, DstP,
-                  Width, Height, Status);
-        IF Status # StOk THEN Z := Depth
+        PlaneS := (Height - 1) * SrcP + Width;
+        PlaneD := (Height - 1) * DstP + Width;
+        IF (PlaneS < Width) OR (PlaneD < Width) OR
+           (SrcD < PlaneS) OR (DstD < PlaneD) OR
+           (SrcOff > CapS) OR (PlaneS > CapS - SrcOff) OR
+           (DstOff > CapD) OR (PlaneD > CapD - DstOff) OR
+           ((Depth - 1) > (CapS - SrcOff - PlaneS) DIV SrcD) OR
+           ((Depth - 1) > (CapD - DstOff - PlaneD) DIV DstD) THEN
+        BEGIN Status := StBounds; AwgSetStatus(StBounds, 138, Depth) END
+        ELSE
+        BEGIN
+            Status := StOk;
+        FOR Z := 0 STEP 1 UNTIL Depth - 1 DO
+        BEGIN
+            AwgCopy2D(SrcSpace, SrcOff + Z * SrcD, SrcP,
+                      DstSpace, DstOff + Z * DstD, DstP,
+                      Width, Height, Status);
+            IF Status # StOk THEN Z := Depth
+        END
+        END
     END
 END;
 

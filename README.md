@@ -1,5 +1,7 @@
 # ALGOL W GPU Stack
 
+![ALGOL W GPU Stack retro terminal banner](docs/assets/algol-w-retro.svg)
+
 ![Language](https://img.shields.io/badge/language-ALGOL%20W-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/status-partial%20source-orange?style=for-the-badge)
 ![Validation](https://img.shields.io/badge/native%20tests-not%20run-lightgrey?style=for-the-badge)
@@ -13,6 +15,14 @@ fragments: constants, foundation/runtime, and abstract memory. It does not yet
 contain a complete 500-block stack or an executable program body. The 108
 procedure definitions include two self-test procedures; neither has been run
 with a native ALGOL W compiler.
+
+## Release Status
+
+The first tagged source release is `v0.1.0`. It packages the licensed declaration
+head, constants, foundation/runtime, abstract-memory fragment, documentation,
+node manifest, and block index. This is a source preview: the missing
+`src/AwgBody.alw` prevents an assembled program, and native execution remains
+unverified.
 
 ## Table of Contents
 
@@ -30,6 +40,7 @@ with a native ALGOL W compiler.
 12. [Contributing](#contributing)
 13. [Block and Node Index](#block-and-node-index)
 14. [License](#license)
+15. [Release Status](#release-status)
 
 ## What This Is
 
@@ -162,6 +173,15 @@ Access depends on the repository's GitHub visibility and your credentials.
 
 No compiled binaries, GPU results, benchmark measurements, or complete-stack
 validation are claimed by this README.
+
+### Hardened edge cases
+
+The memory layer rejects invalid spaces and element kinds, uses subtraction-based
+bounds checks to avoid `Off + Len` overflow, treats zero-length and exact self-copy
+operations as no-ops, reports register bounds errors globally, and validates 2D/3D
+copy dimensions and pitch. Overlapping non-identical ranges remain an explicit
+`StAlias` error. Arithmetic that exceeds the ALGOL W implementation's integer
+range still requires compiler-specific validation.
 
 ## Determinism and Reproducibility
 
