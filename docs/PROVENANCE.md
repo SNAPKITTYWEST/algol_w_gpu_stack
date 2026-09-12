@@ -36,6 +36,6 @@ Production-hardening update: memory bounds arithmetic now avoids direct
 `Off + Len` overflow; allocation validates spaces and element kinds; zero-length
 and exact self-copies terminate without entering a loop; register bounds failures
 record global status; and pitched copies validate dimensions, pitch, and enclosing
-pool bounds. `tests/source_invariants.mjs` checks these source-level guarantees.
-This remains static source verification until a compatible ALGOL W compiler and
-runtime execute the procedures.
+pool bounds. These guarantees were reviewed at source level. This remains static
+source verification until a compatible ALGOL W compiler and runtime execute the
+procedures.
