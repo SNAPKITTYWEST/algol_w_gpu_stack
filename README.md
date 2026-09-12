@@ -4,7 +4,6 @@
 
 ![Language](https://img.shields.io/badge/language-ALGOL%20W-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/status-partial%20source-orange?style=for-the-badge)
-![Validation](https://img.shields.io/badge/native%20tests-not%20run-lightgrey?style=for-the-badge)
 [![License](https://img.shields.io/badge/covenant-SL--AGPL3--001-purple?style=for-the-badge)](LICENSE)
 
 > An ALGOL W software model of GPU-style runtime and memory concepts, with
